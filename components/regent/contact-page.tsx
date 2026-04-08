@@ -7,10 +7,10 @@ import {
   contactSupportPoints,
 } from "@/components/regent/content";
 import { MailIcon, PhoneIcon } from "@/components/regent/icons";
-import { ArrowBullet, PillButton, SectionEyebrow } from "@/components/regent/primitives";
+import { ArrowBullet, SectionEyebrow } from "@/components/regent/primitives";
 import { ContactCtaSection } from "@/components/regent/contact-cta-section";
+import { PageHero } from "@/components/regent/page-hero";
 import { SiteFooter } from "@/components/regent/site-footer";
-import { SiteHeader } from "@/components/regent/site-header";
 
 function ContactInfoCard({
   title,
@@ -32,44 +32,18 @@ function ContactInfoCard({
 export function ContactPage() {
   return (
     <main className="bg-white text-[var(--foreground)]">
-      <section className="relative isolate overflow-hidden bg-[var(--regent-blue-950)]">
-        <Image
-          src="/regent/hero.png"
-          alt="Contact Regent Technologies"
-          fill
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/75 to-black/25" />
-
-        <SiteHeader />
-
-        <div className="relative z-10 mx-auto max-w-[1440px] px-4 pb-20 pt-24 md:px-12 md:pb-28 md:pt-[143px]">
-          <div className="max-w-[820px] space-y-6 text-white">
-            <SectionEyebrow
-              label="Get In Touch"
-              className="text-white/85"
-              lineClassName="bg-white"
-            />
-            <h1 className="text-4xl font-bold leading-[1.15] md:text-[56px] md:leading-[1.2]">
-              Contact Regent Technologies
-            </h1>
-            <p className="max-w-[720px] text-lg leading-8 text-[var(--muted-light)]">
-              Speak with our team about blade sharpening, recurring pickup
-              schedules, or the right service setup for your production floor.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <PillButton href="tel:+94112650397" label="Call Us Now" />
-              <PillButton
-                href={`mailto:${contactEmail}`}
-                label="Email Regent"
-                variant="secondary"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        currentPath="/contact"
+        eyebrow="Get In Touch"
+        title="Contact Regent Technologies"
+        description="Speak with our team about blade sharpening, recurring pickup schedules, or the right service setup for your production floor."
+        image="/regent/hero.png"
+        imageAlt="Contact Regent Technologies"
+        actions={[
+          { href: "tel:+94112650397", label: "Call Us Now" },
+          { href: `mailto:${contactEmail}`, label: "Email Regent", variant: "secondary" },
+        ]}
+      />
 
       <section className="mx-auto max-w-[1440px] px-4 py-20 md:px-12 md:py-[104px]">
         <div className="grid gap-6 lg:grid-cols-3">

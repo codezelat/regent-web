@@ -1,4 +1,9 @@
+import Link from "next/link";
 import { ChevronRightIcon } from "@/components/regent/icons";
+
+function isInternalHref(href: string) {
+  return href.startsWith("/") || href.startsWith("#");
+}
 
 export function PillButton({
   href,
@@ -26,10 +31,17 @@ export function PillButton({
       : "inline-flex items-center justify-center rounded-full px-6 py-4 text-base font-semibold transition-colors md:text-lg";
 
   return (
-    <a className={`${shared} ${styles} ${className}`} href={href}>
-      <span>{label}</span>
-      {variant === "text" ? <ChevronRightIcon className="h-5 w-5" /> : null}
-    </a>
+    isInternalHref(href) ? (
+      <Link className={`${shared} ${styles} ${className}`} href={href}>
+        <span>{label}</span>
+        {variant === "text" ? <ChevronRightIcon className="h-5 w-5" /> : null}
+      </Link>
+    ) : (
+      <a className={`${shared} ${styles} ${className}`} href={href}>
+        <span>{label}</span>
+        {variant === "text" ? <ChevronRightIcon className="h-5 w-5" /> : null}
+      </a>
+    )
   );
 }
 
@@ -65,13 +77,13 @@ export function ArrowBullet({ children }: { children: string }) {
 
 export function FooterLink({ label, href }: { label: string; href: string }) {
   return (
-    <a
+    <Link
       className="inline-flex items-center gap-2 py-2 text-base uppercase tracking-[0.02em] text-white transition-colors hover:text-[var(--muted-light)]"
       href={href}
     >
       <ChevronRightIcon className="h-5 w-5 text-[var(--muted-light)]" />
       <span>{label}</span>
-    </a>
+    </Link>
   );
 }
 

@@ -6,7 +6,7 @@ import {
   services,
   whyChoosePoints,
 } from "@/components/regent/content";
-import { MailIcon, PhoneIcon, PlayIcon } from "@/components/regent/icons";
+import { PlayIcon } from "@/components/regent/icons";
 import {
   ArrowBullet,
   PillButton,
@@ -33,7 +33,7 @@ export function HomePage() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-black/15" />
 
-        <SiteHeader />
+        <SiteHeader currentPath="/" />
 
         <div className="relative z-10 mx-auto flex max-w-[1440px] px-4 pb-20 pt-24 md:px-12 md:pb-[134px] md:pt-[143px]">
           <div className="max-w-[763px] space-y-14">
@@ -47,9 +47,9 @@ export function HomePage() {
               </p>
             </div>
             <div className="flex flex-wrap gap-4">
-              <PillButton href="#contact" label="Request Blade Pickup" />
+              <PillButton href="/contact" label="Request Blade Pickup" />
               <PillButton
-                href="#footer-contact"
+                href="/contact"
                 label="Contact us"
                 variant="secondary"
               />
@@ -80,7 +80,7 @@ export function HomePage() {
             </ul>
 
             <PillButton
-              href="#contact"
+              href="/contact"
               label="Need Professional Blade Sharpening?"
               variant="dark"
               className="gap-2"
@@ -113,7 +113,7 @@ export function HomePage() {
                 efficient production.
               </p>
             </div>
-            <PillButton href="#products" label="Learn More" variant="text" />
+            <PillButton href="/products" label="Learn More" variant="text" />
           </div>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -172,7 +172,7 @@ export function HomePage() {
                   </p>
                 </div>
                 <div>
-                  <PillButton href="#contact" label={service.cta} />
+                  <PillButton href="/contact" label={service.cta} />
                 </div>
               </div>
             </article>
@@ -224,7 +224,7 @@ export function HomePage() {
                   {feature.title}
                 </h3>
                 <PillButton
-                  href="#contact"
+                  href="/contact"
                   label="Learn More"
                   variant="text"
                   className="mt-4 text-base"

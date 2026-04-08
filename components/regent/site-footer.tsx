@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { footerIndustries, quickLinks } from "@/components/regent/content";
 import {
   FacebookIcon,
@@ -38,21 +39,7 @@ export function SiteFooter() {
             <h3 className="text-xl font-semibold uppercase">Quick Links</h3>
             <div className="flex flex-col">
               {quickLinks.map((item) => (
-                <FooterLink
-                  key={item}
-                  label={item}
-                  href={
-                    item === "HOME"
-                      ? "#home"
-                      : item === "Products"
-                        ? "#products"
-                        : item === "Services"
-                          ? "#services"
-                          : item === "About us"
-                            ? "#about"
-                            : "#footer-contact"
-                  }
-                />
+                <FooterLink key={item.label} label={item.label} href={item.href} />
               ))}
             </div>
           </div>
@@ -61,7 +48,7 @@ export function SiteFooter() {
             <h3 className="text-xl font-semibold uppercase">industries</h3>
             <div className="flex flex-col">
               {footerIndustries.map((item) => (
-                <FooterLink key={item} label={item} href="#industries" />
+                <FooterLink key={item} label={item} href="/#industries" />
               ))}
             </div>
           </div>
@@ -116,13 +103,13 @@ export function SiteFooter() {
         <div className="mt-16 flex flex-col gap-6 border-t border-[var(--regent-blue-700)] pt-6 text-[var(--muted-light)] md:flex-row md:items-center md:justify-between">
           <p className="text-base leading-8">Copyright © 2026 Regent Tech</p>
           <div className="flex flex-wrap items-center gap-4 text-base leading-8">
-            <a className="border-r border-[var(--neutral-400)] pr-4" href="#home">
+            <Link className="border-r border-[var(--neutral-400)] pr-4" href="/faq">
               FAQ
-            </a>
-            <a className="border-r border-[var(--neutral-400)] pr-4" href="#home">
+            </Link>
+            <Link className="border-r border-[var(--neutral-400)] pr-4" href="/privacy-policy">
               Privacy Policy
-            </a>
-            <a href="#home">Terms of Service</a>
+            </Link>
+            <Link href="/terms-of-service">Terms of Service</Link>
           </div>
         </div>
       </div>

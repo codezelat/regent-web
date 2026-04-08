@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { navItems } from "@/components/regent/content";
 import {
   ChevronDownIcon,
@@ -7,7 +8,7 @@ import {
   TiktokIcon,
 } from "@/components/regent/icons";
 
-export function SiteHeader() {
+export function SiteHeader({ currentPath = "/" }: { currentPath?: string }) {
   return (
     <header className="relative z-20">
       <div className="hidden bg-[var(--regent-blue-700)] md:block">
@@ -40,14 +41,16 @@ export function SiteHeader() {
           </div>
           <nav className="flex flex-wrap items-center gap-x-1 gap-y-2 text-white">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.label}
-                className="inline-flex items-center gap-2 px-4 py-3 text-sm font-semibold tracking-[0.04em] transition-colors hover:text-[var(--muted-light)]"
+                className={`inline-flex items-center gap-2 px-4 py-3 text-sm font-semibold tracking-[0.04em] transition-colors hover:text-[var(--muted-light)] ${
+                  currentPath === item.href ? "text-[var(--muted-light)]" : ""
+                }`}
                 href={item.href}
               >
                 <span>{item.label}</span>
                 {item.hasChevron ? <ChevronDownIcon className="h-5 w-5" /> : null}
-              </a>
+              </Link>
             ))}
           </nav>
           <a

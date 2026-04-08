@@ -8,7 +8,10 @@ const inter = Inter({
   display: "swap",
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Regent Tech",
   description:
     "Precision automated sharpening for industrial blades, pickup and delivery services, and professional tools by Regent Technologies.",
