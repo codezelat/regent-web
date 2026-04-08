@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { SectionEyebrow, PillButton } from "@/components/regent/primitives";
-import { SiteHeader } from "@/components/regent/site-header";
+import { PillButton, SectionEyebrow } from "@/components/regent/ui/primitives";
+import { SiteHeader } from "@/components/regent/layout/site-header";
 
 type HeroAction = {
   href: string;

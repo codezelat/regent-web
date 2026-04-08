@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronRightIcon } from "@/components/regent/icons";
+import { ChevronRightIcon } from "@/components/regent/ui/icons";
 
 function isInternalHref(href: string) {
   return href.startsWith("/") || href.startsWith("#");

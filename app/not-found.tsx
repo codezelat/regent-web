@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { SiteFooter } from "@/components/regent/site-footer";
-import { SiteHeader } from "@/components/regent/site-header";
+import { SiteFooter } from "@/components/regent/layout/site-footer";
+import { SiteHeader } from "@/components/regent/layout/site-header";
 
 export default function NotFound() {
   return (

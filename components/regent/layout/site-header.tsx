@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { navItems } from "@/components/regent/content";
+import { navItems } from "@/lib/regent-content";
 import {
   ChevronDownIcon,
   FacebookIcon,
   InstagramIcon,
   MailIcon,
   TiktokIcon,
-} from "@/components/regent/icons";
+} from "@/components/regent/ui/icons";
 
 export function SiteHeader({ currentPath = "/" }: { currentPath?: string }) {
   return (

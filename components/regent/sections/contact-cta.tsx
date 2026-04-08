@@ -1,6 +1,6 @@
-import { contactEmail } from "@/components/regent/content";
-import { MailIcon, PhoneIcon } from "@/components/regent/icons";
-import { PillButton } from "@/components/regent/primitives";
+import { contactEmail } from "@/lib/regent-content";
+import { MailIcon, PhoneIcon } from "@/components/regent/ui/icons";
+import { PillButton } from "@/components/regent/ui/primitives";
 
 export function ContactCtaSection() {
   return (

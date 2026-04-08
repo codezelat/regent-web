@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { footerIndustries, quickLinks } from "@/components/regent/content";
+import { footerIndustries, quickLinks } from "@/lib/regent-content";
 import {
   FacebookIcon,
   InstagramIcon,
   TiktokIcon,
-} from "@/components/regent/icons";
-import { ChevronRightIcon } from "@/components/regent/icons";
-import { FooterLink, SocialLink } from "@/components/regent/primitives";
+} from "@/components/regent/ui/icons";
+import { ChevronRightIcon } from "@/components/regent/ui/icons";
+import { FooterLink, SocialLink } from "@/components/regent/ui/primitives";
 
 export function SiteFooter() {
   return (
