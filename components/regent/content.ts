@@ -115,3 +115,40 @@ export const footerIndustries = [
   "Metal Fabrication",
   "Plastic Processing",
 ] as const;
+
+export const contactEmail = "info@regenttec.com";
+
+export const contactNumbers = [
+  "011 2650 397",
+  "077 3048 569",
+  "077 7906 602",
+  "071 7700 619",
+] as const;
+
+export const contactAddress = [
+  "No. 128, Industrial Estate Road",
+  "Negombo 11500",
+  "Sri Lanka",
+] as const;
+
+export const contactHighlights = [
+  {
+    title: "Call Our Team",
+    body: "Reach our sharpening and logistics team directly for scheduling, pricing, and pickup coordination.",
+  },
+  {
+    title: "Email Your Inquiry",
+    body: "Send blade specifications, machine details, or pickup requests and we will route them to the correct team.",
+  },
+  {
+    title: "Visit Our Facility",
+    body: "Drop off tooling or discuss recurring sharpening needs with the Regent Technologies team in Negombo.",
+  },
+] as const;
+
+export const contactSupportPoints = [
+  "Pickup and delivery coordination for industrial blade sharpening",
+  "Support for TCT and HSS blade maintenance requirements",
+  "Direct guidance for workshops, factories, and production teams",
+  "Fast response for repeat-service and ongoing operational needs",
+] as const;

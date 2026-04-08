@@ -33,10 +33,20 @@ export function PillButton({
   );
 }
 
-export function SectionEyebrow({ label }: { label: string }) {
+export function SectionEyebrow({
+  label,
+  className = "",
+  lineClassName = "",
+}: {
+  label: string;
+  className?: string;
+  lineClassName?: string;
+}) {
   return (
-    <div className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--muted)] md:text-base">
-      <span className="h-px w-4 bg-[var(--regent-red)]" />
+    <div
+      className={`inline-flex items-center gap-2 text-sm font-semibold text-[var(--muted)] md:text-base ${className}`}
+    >
+      <span className={`h-px w-4 bg-[var(--regent-red)] ${lineClassName}`} />
       <span>{label}</span>
     </div>
   );
