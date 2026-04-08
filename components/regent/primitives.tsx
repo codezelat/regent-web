@@ -1,0 +1,86 @@
+import { ChevronRightIcon } from "@/components/regent/icons";
+
+export function PillButton({
+  href,
+  label,
+  variant = "primary",
+  className = "",
+}: {
+  href: string;
+  label: string;
+  variant?: "primary" | "secondary" | "dark" | "text";
+  className?: string;
+}) {
+  const styles =
+    variant === "primary"
+      ? "bg-[var(--regent-red)] text-white hover:bg-[var(--regent-red-dark)]"
+      : variant === "secondary"
+        ? "border border-white text-white hover:bg-white hover:text-[var(--regent-blue-900)]"
+        : variant === "dark"
+          ? "bg-[var(--regent-blue-900)] text-white hover:bg-[var(--regent-blue-800)]"
+          : "text-[var(--regent-red)] hover:text-[var(--regent-red-dark)]";
+
+  const shared =
+    variant === "text"
+      ? "inline-flex items-center gap-2 text-base font-semibold md:text-lg"
+      : "inline-flex items-center justify-center rounded-full px-6 py-4 text-base font-semibold transition-colors md:text-lg";
+
+  return (
+    <a className={`${shared} ${styles} ${className}`} href={href}>
+      <span>{label}</span>
+      {variant === "text" ? <ChevronRightIcon className="h-5 w-5" /> : null}
+    </a>
+  );
+}
+
+export function SectionEyebrow({ label }: { label: string }) {
+  return (
+    <div className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--muted)] md:text-base">
+      <span className="h-px w-4 bg-[var(--regent-red)]" />
+      <span>{label}</span>
+    </div>
+  );
+}
+
+export function ArrowBullet({ children }: { children: string }) {
+  return (
+    <li className="flex items-center gap-3 px-2 py-2 text-lg font-semibold text-[var(--neutral-800)]">
+      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[var(--regent-red-soft)] text-[var(--regent-red)]">
+        <ChevronRightIcon className="h-4 w-4" />
+      </span>
+      <span>{children}</span>
+    </li>
+  );
+}
+
+export function FooterLink({ label, href }: { label: string; href: string }) {
+  return (
+    <a
+      className="inline-flex items-center gap-2 py-2 text-base uppercase tracking-[0.02em] text-white transition-colors hover:text-[var(--muted-light)]"
+      href={href}
+    >
+      <ChevronRightIcon className="h-5 w-5 text-[var(--muted-light)]" />
+      <span>{label}</span>
+    </a>
+  );
+}
+
+export function SocialLink({
+  href,
+  label,
+  children,
+}: {
+  href: string;
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <a
+      aria-label={label}
+      className="flex h-11 w-11 items-center justify-center rounded-full border border-white/30 text-white transition-colors hover:border-white hover:bg-white/10"
+      href={href}
+    >
+      {children}
+    </a>
+  );
+}
