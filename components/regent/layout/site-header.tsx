@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { navItems } from "@/lib/regent-content";
+import { siteConfig } from "@/lib/site-config";
 import {
   ChevronDownIcon,
   FacebookIcon,
@@ -9,24 +10,28 @@ import {
 } from "@/components/regent/ui/icons";
 
 export function SiteHeader({ currentPath = "/" }: { currentPath?: string }) {
+  const primaryPhone =
+    siteConfig.phoneNumbers.find((phone) => phone.primary) ?? siteConfig.phoneNumbers[0];
+  const secondaryPhones = siteConfig.phoneNumbers.filter((phone) => !phone.primary);
+
   return (
     <header className="relative z-20">
       <div className="hidden bg-[var(--regent-blue-700)] md:block">
         <div className="mx-auto flex max-w-[1440px] items-center justify-between px-12 py-3 text-sm font-semibold text-white">
-          <p>CALL US: 077 3048 569 | 077 7906 602 | 071 7700 619</p>
+          <p>CALL US: {secondaryPhones.map((phone) => phone.label).join(" | ")}</p>
           <div className="flex items-center gap-4">
-            <a className="inline-flex items-center gap-2 text-white/95" href="mailto:info@regenttec.com">
+            <a className="inline-flex items-center gap-2 text-white/95" href={`mailto:${siteConfig.email}`}>
               <MailIcon className="h-5 w-5" />
-              <span>info@regenttec.com</span>
+              <span>{siteConfig.email}</span>
             </a>
             <div className="flex items-center gap-4 text-white">
-              <a aria-label="Instagram" href="https://instagram.com">
+              <a aria-label="Instagram" href={siteConfig.socialLinks[0].href}>
                 <InstagramIcon className="h-5 w-5" />
               </a>
-              <a aria-label="TikTok" href="https://tiktok.com">
+              <a aria-label="TikTok" href={siteConfig.socialLinks[1].href}>
                 <TiktokIcon className="h-5 w-5" />
               </a>
-              <a aria-label="Facebook" href="https://facebook.com">
+              <a aria-label="Facebook" href={siteConfig.socialLinks[2].href}>
                 <FacebookIcon className="h-5 w-5" />
               </a>
             </div>
@@ -47,6 +52,7 @@ export function SiteHeader({ currentPath = "/" }: { currentPath?: string }) {
                   currentPath === item.href ? "text-[var(--muted-light)]" : ""
                 }`}
                 href={item.href}
+                aria-current={currentPath === item.href ? "page" : undefined}
               >
                 <span>{item.label}</span>
                 {item.hasChevron ? <ChevronDownIcon className="h-5 w-5" /> : null}
@@ -55,11 +61,11 @@ export function SiteHeader({ currentPath = "/" }: { currentPath?: string }) {
           </nav>
           <a
             className="inline-flex items-center bg-[var(--regent-red)] px-6 py-4 text-left text-white transition-colors hover:bg-[var(--regent-red-dark)] md:h-28 md:w-[259px] md:self-stretch"
-            href="tel:+94112650397"
+            href={primaryPhone.href}
           >
             <span className="flex flex-col">
               <span className="text-sm font-semibold text-white/90">CALL US</span>
-              <span className="text-xl font-bold">011 2650 397</span>
+              <span className="text-xl font-bold">{primaryPhone.label}</span>
             </span>
           </a>
         </div>

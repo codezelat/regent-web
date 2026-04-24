@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { getSiteUrl, siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,13 +9,10 @@ const inter = Inter({
   display: "swap",
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
-  title: "Regent Tech",
-  description:
-    "Precision automated sharpening for industrial blades, pickup and delivery services, and professional tools by Regent Technologies.",
+  metadataBase: new URL(getSiteUrl()),
+  title: siteConfig.name,
+  description: siteConfig.description,
 };
 
 export default function RootLayout({

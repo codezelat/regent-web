@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { footerIndustries, quickLinks } from "@/lib/regent-content";
+import { siteConfig } from "@/lib/site-config";
 import {
   FacebookIcon,
   InstagramIcon,
@@ -23,13 +24,13 @@ export function SiteFooter() {
               </p>
             </div>
             <div className="flex items-center gap-6">
-              <SocialLink href="https://instagram.com" label="Instagram">
+              <SocialLink href={siteConfig.socialLinks[0].href} label="Instagram">
                 <InstagramIcon className="h-5 w-5" />
               </SocialLink>
-              <SocialLink href="https://tiktok.com" label="TikTok">
+              <SocialLink href={siteConfig.socialLinks[1].href} label="TikTok">
                 <TiktokIcon className="h-5 w-5" />
               </SocialLink>
-              <SocialLink href="https://facebook.com" label="Facebook">
+              <SocialLink href={siteConfig.socialLinks[2].href} label="Facebook">
                 <FacebookIcon className="h-5 w-5" />
               </SocialLink>
             </div>
@@ -62,12 +63,10 @@ export function SiteFooter() {
                   <p className="text-base font-medium uppercase text-[var(--muted-light)]">
                     Address
                   </p>
-                  <address className="not-italic text-base leading-8 text-white">
-                    No. 128, Industrial Estate Road
-                    <br />
-                    Negombo 11500
-                    <br />
-                    Sri Lanka
+                  <address className="flex flex-col text-base leading-8 text-white not-italic">
+                    {siteConfig.address.map((line) => (
+                      <span key={line}>{line}</span>
+                    ))}
                   </address>
                 </div>
               </div>
@@ -77,8 +76,8 @@ export function SiteFooter() {
                   <p className="text-base font-medium uppercase text-[var(--muted-light)]">
                     EMAIL
                   </p>
-                  <a className="text-base text-white" href="mailto:info@regenttec.com">
-                    info@regenttec.com
+                  <a className="text-base text-white" href={`mailto:${siteConfig.email}`}>
+                    {siteConfig.email}
                   </a>
                 </div>
               </div>
@@ -89,10 +88,11 @@ export function SiteFooter() {
                     phone
                   </p>
                   <div className="flex flex-col gap-1 text-base text-white">
-                    <a href="tel:+94112650397">011 2650 397</a>
-                    <a href="tel:+94773048569">077 3048 569</a>
-                    <a href="tel:+94777906602">077 7906 602</a>
-                    <a href="tel:+94717700619">071 7700 619</a>
+                    {siteConfig.phoneNumbers.map((phone) => (
+                      <a key={phone.href} href={phone.href}>
+                        {phone.label}
+                      </a>
+                    ))}
                   </div>
                 </div>
               </div>

@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
 import { getProductsTotalPages } from "@/components/regent/sections/products-catalog-section";
+import { getSiteUrl } from "@/lib/site-config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
+  const baseUrl = getSiteUrl();
   const routes = [
     "",
     "/contact",

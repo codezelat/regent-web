@@ -10,6 +10,8 @@ import {
 
 type Params = Promise<{ pageNumber: string }>;
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return Array.from({ length: getProductsTotalPages() - 1 }, (_, index) => ({
     pageNumber: String(index + 2),
