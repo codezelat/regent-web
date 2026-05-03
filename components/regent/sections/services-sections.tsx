@@ -94,7 +94,7 @@ export function ServicesBenefitsSection() {
 
 export function ServicesProcessSection() {
   return (
-    <section className="mx-auto max-w-[1440px] px-4 py-20 md:px-12 md:py-[104px]">
+    <section id="service-process" className="mx-auto max-w-[1440px] px-4 py-20 md:px-12 md:py-[104px]">
       <div className="space-y-10">
         <div className="space-y-4">
           <SectionEyebrow label="Service Process" />

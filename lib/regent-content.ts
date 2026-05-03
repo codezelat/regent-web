@@ -1,13 +1,16 @@
+import { siteConfig } from "@/lib/site-config";
+
 export const navItems = [
   { label: "HOME", href: "/", hasChevron: false },
   { label: "SERVICES", href: "/services", hasChevron: false },
-  { label: "PRODUCTS", href: "/products", hasChevron: true },
+  { label: "PRODUCTS", href: "/products", hasChevron: false },
   { label: "INDUSTRIES", href: "/#industries", hasChevron: false },
   { label: "ABOUT US", href: "/#about", hasChevron: false },
-  { label: "CONTACTS", href: "/contact", hasChevron: false },
+  { label: "CONTACT", href: "/contact", hasChevron: false },
 ] as const;
 
 export const aboutHighlights = [
+  siteConfig.experienceLabel,
   "Advanced Sharpening Technology",
   "Specialized TCT & HSS Expertise",
   "Extended Tool Lifespan",
@@ -76,12 +79,12 @@ export const productFeatures = [
     image: "/regent/product-precision.png",
   },
   {
-    title: "Power Tools",
-    image: "/regent/product-power.png",
+    title: "Arden Router Bits",
+    image: "/regent/product-woodworking.png",
   },
   {
-    title: "Tyre Rebuilding",
-    image: "/regent/product-tyre.png",
+    title: "Power Tools",
+    image: "/regent/product-power.png",
   },
   {
     title: "Woodworking Tools",
@@ -98,6 +101,7 @@ export const productFeatures = [
 ] as const;
 
 export const whyChoosePoints = [
+  siteConfig.experienceLabel,
   "Advanced Sharpening Technology",
   "Expertise in TCT & HSS Tools",
   "Extended Tool Lifespan",
@@ -122,20 +126,11 @@ export const footerIndustries = [
   "Plastic Processing",
 ] as const;
 
-export const contactEmail = "info@regenttec.com";
+export const contactEmail = siteConfig.email;
 
-export const contactNumbers = [
-  "011 2650 397",
-  "077 3048 569",
-  "077 7906 602",
-  "071 7700 619",
-] as const;
+export const contactNumbers = siteConfig.phoneNumbers.map((phone) => phone.label);
 
-export const contactAddress = [
-  "No. 128, Industrial Estate Road",
-  "Negombo 11500",
-  "Sri Lanka",
-] as const;
+export const contactAddress = siteConfig.address;
 
 export const contactHighlights = [
   {
@@ -148,13 +143,14 @@ export const contactHighlights = [
   },
   {
     title: "Visit Our Facility",
-    body: "Drop off tooling or discuss recurring sharpening needs with the Regent Technologies team in Negombo.",
+    body: "Drop off tooling or discuss recurring sharpening needs with the Regent Technologies team in Moratuwa.",
   },
 ] as const;
 
 export const contactSupportPoints = [
   "Pickup and delivery coordination for industrial blade sharpening",
   "Support for TCT and HSS blade maintenance requirements",
+  "Product guidance for workshops, factories, and woodworking operations",
   "Direct guidance for workshops, factories, and production teams",
   "Fast response for repeat-service and ongoing operational needs",
 ] as const;
@@ -199,6 +195,13 @@ export const productCatalog = [
     category: "Machines & Tools",
     image: "/regent/product-power.png",
     summary: "Professional-grade power tools selected for workshop and production-floor use.",
+  },
+  {
+    slug: "arden-router-bits",
+    title: "Arden Router Bits",
+    category: "Featured Brand",
+    image: "/regent/product-woodworking.png",
+    summary: "Regent Technologies is the sole agent for Arden Router Bits, supporting precision woodworking and production applications.",
   },
   {
     slug: "tyre-rebuilding",
@@ -309,9 +312,14 @@ export const faqItems = [
       "Absolutely. We can help with both sharpening-related services and the relevant tools, accessories, and workshop products shown in our catalog.",
   },
   {
+    question: "Do you supply Arden Router Bits?",
+    answer:
+      "Yes. Regent Technologies is the sole agent for Arden Router Bits and can help you choose suitable options for woodworking and precision cutting applications.",
+  },
+  {
     question: "Where are you located?",
     answer:
-      "Regent Technologies is located at No. 128, Industrial Estate Road, Negombo 11500, Sri Lanka.",
+      "Regent Technologies is located at No. 403, Bandaranayake Mawatha, Katubedda, Moratuwa 10400, Sri Lanka.",
   },
 ] as const;
 

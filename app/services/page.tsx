@@ -9,7 +9,7 @@ import {
 import { SiteFooter } from "@/components/regent/layout/site-footer";
 
 export const metadata: Metadata = {
-  title: "Services | Regent Tech",
+  title: "Services",
   description:
     "Explore Regent Technologies sharpening, pickup, and delivery services for industrial blades and production tooling.",
 };

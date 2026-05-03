@@ -5,7 +5,7 @@ import { LegalSections } from "@/components/regent/sections/legal-sections";
 import { privacySections } from "@/lib/regent-content";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Regent Tech",
+  title: "Privacy Policy",
   description:
     "Read the Regent Technologies privacy policy for information about service inquiries, customer data, and operational records.",
 };

@@ -5,7 +5,7 @@ import { ContactCtaSection } from "@/components/regent/sections/contact-cta";
 import { ProductsCatalogSection } from "@/components/regent/sections/products-catalog-section";
 
 export const metadata: Metadata = {
-  title: "Products | Regent Tech",
+  title: "Products",
   description:
     "Browse the Regent Technologies product catalog for industrial tools, accessories, and workshop support products.",
 };

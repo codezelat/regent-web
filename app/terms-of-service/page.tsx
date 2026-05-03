@@ -5,7 +5,7 @@ import { LegalSections } from "@/components/regent/sections/legal-sections";
 import { termsSections } from "@/lib/regent-content";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Regent Tech",
+  title: "Terms of Service",
   description:
     "Read the Regent Technologies terms of service for industrial sharpening, logistics, and related product support.",
 };

@@ -28,12 +28,12 @@ export async function generateMetadata({
 
   if (!Number.isInteger(page) || page < 2 || page > getProductsTotalPages()) {
     return {
-      title: "Products | Regent Tech",
+      title: "Products",
     };
   }
 
   return {
-    title: `Products Page ${page} | Regent Tech`,
+    title: `Products Page ${page}`,
     description:
       "Paginated Regent Technologies product catalog for industrial tools, accessories, and related workshop products.",
   };

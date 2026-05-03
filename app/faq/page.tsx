@@ -5,7 +5,7 @@ import { ContactCtaSection } from "@/components/regent/sections/contact-cta";
 import { FaqSection } from "@/components/regent/sections/faq-section";
 
 export const metadata: Metadata = {
-  title: "FAQ | Regent Tech",
+  title: "FAQ",
   description:
     "Find answers about Regent Technologies sharpening services, pickups, products, and operational support.",
 };

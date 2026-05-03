@@ -11,6 +11,7 @@ import {
 import { SiteFooter } from "@/components/regent/layout/site-footer";
 import { SiteHeader } from "@/components/regent/layout/site-header";
 import { PillButton } from "@/components/regent/ui/primitives";
+import { siteConfig } from "@/lib/site-config";
 
 export default function Page() {
   return (
@@ -39,7 +40,7 @@ export default function Page() {
               </h1>
               <p className="max-w-[763px] text-lg font-medium leading-7 text-[var(--muted-light)] md:text-[18px]">
                 Specialized sharpening for TCT &amp; HSS tools using fully
-                automated machines with integrated cooling technology.
+                automated machines with integrated cooling technology, backed by {siteConfig.experienceLabel.toLowerCase()}.
               </p>
             </div>
             <div className="flex flex-wrap gap-4">
@@ -49,6 +50,17 @@ export default function Page() {
                 label="Contact us"
                 variant="secondary"
               />
+            </div>
+            <div className="flex flex-wrap gap-3 text-sm font-semibold text-white/85">
+              <span className="rounded-full border border-white/20 bg-white/8 px-4 py-2">
+                {siteConfig.experienceLabel}
+              </span>
+              <span className="rounded-full border border-white/20 bg-white/8 px-4 py-2">
+                {siteConfig.productHighlight}
+              </span>
+              <span className="rounded-full border border-white/20 bg-white/8 px-4 py-2">
+                Moratuwa 10400
+              </span>
             </div>
           </div>
         </div>

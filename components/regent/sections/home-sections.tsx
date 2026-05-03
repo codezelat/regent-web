@@ -6,6 +6,7 @@ import {
   services,
   whyChoosePoints,
 } from "@/lib/regent-content";
+import { siteConfig } from "@/lib/site-config";
 import { PlayIcon } from "@/components/regent/ui/icons";
 import { ArrowBullet, PillButton, SectionEyebrow } from "@/components/regent/ui/primitives";
 
@@ -21,8 +22,9 @@ export function HomeAboutSection() {
             </h2>
             <p className="text-lg leading-8 text-[var(--muted)]">
               Regent Technologies is a specialized industrial service provider
-              focused on high-precision sharpening of TCT (Tungsten Carbide
-              Tipped) and HSS (High-Speed Steel) cutting tools.
+              with {siteConfig.experienceLabel.toLowerCase()} focused on
+              high-precision sharpening of TCT (Tungsten Carbide Tipped) and
+              HSS (High-Speed Steel) cutting tools.
             </p>
           </div>
 
@@ -67,7 +69,7 @@ export function IndustriesSection() {
             <p className="text-lg font-medium leading-7 text-[#767676]">
               We provide precision sharpening solutions for a wide range of
               industries that depend on sharp, reliable cutting tools for
-              efficient production.
+              efficient production, dependable turnaround, and repeatable quality.
             </p>
           </div>
           <PillButton href="/products" label="Learn More" variant="text" />
@@ -160,6 +162,17 @@ export function ProductsPreviewSection() {
             </p>
           </div>
 
+          <div className="inline-flex rounded-2xl border border-[var(--regent-red)]/15 bg-[var(--regent-red-soft)] px-5 py-4 text-left">
+            <div className="space-y-1">
+              <p className="text-sm font-semibold uppercase tracking-[0.08em] text-[var(--regent-red)]">
+                Featured Brand
+              </p>
+              <p className="text-lg font-bold leading-7 text-[var(--foreground)]">
+                {siteConfig.productHighlight}
+              </p>
+            </div>
+          </div>
+
           <div className="overflow-hidden">
             <Image
               src="/regent/products-main.png"
@@ -189,8 +202,8 @@ export function ProductsPreviewSection() {
                 {feature.title}
               </h3>
               <PillButton
-                href="/contact"
-                label="Learn More"
+                href="/products"
+                label="See Products"
                 variant="text"
                 className="mt-4 text-base"
               />
@@ -215,13 +228,23 @@ export function VideoShowcaseSection() {
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-black/50" />
-        <button
-          type="button"
-          aria-label="Play sharpening process video"
+        <div
+          aria-hidden="true"
           className="absolute left-1/2 top-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-[5px] border-[var(--regent-red-dark)] bg-[var(--regent-red)] text-white shadow-lg"
         >
           <PlayIcon className="h-8 w-8 translate-x-0.5" />
-        </button>
+        </div>
+        <div className="absolute inset-x-0 bottom-0 flex flex-col gap-4 p-6 text-white md:flex-row md:items-end md:justify-between md:p-10">
+          <div className="max-w-[700px] space-y-2">
+            <p className="text-sm font-semibold uppercase tracking-[0.08em] text-white/80">
+              Sharpening Workflow
+            </p>
+            <h2 className="text-2xl font-bold leading-8 md:text-[32px] md:leading-[44px]">
+              Automated grinding, cooling, and finishing built for dependable blade recovery
+            </h2>
+          </div>
+          <PillButton href="/services#service-process" label="See Service Flow" />
+        </div>
       </div>
     </section>
   );
@@ -250,7 +273,7 @@ export function WhyRegentSection() {
             <p className="text-lg leading-8 text-[var(--muted)]">
               At Regent Technologies, we combine advanced sharpening
               technology with industry expertise to deliver reliable blade
-              maintenance solutions.
+              maintenance solutions for workshops, factories, and production teams.
             </p>
           </div>
 

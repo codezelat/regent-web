@@ -6,6 +6,7 @@ import {
   contactNumbers,
   contactSupportPoints,
 } from "@/lib/regent-content";
+import { siteConfig } from "@/lib/site-config";
 import { MailIcon, PhoneIcon } from "@/components/regent/ui/icons";
 import { ArrowBullet, SectionEyebrow } from "@/components/regent/ui/primitives";
 
@@ -76,6 +77,14 @@ export function ContactInfoSection() {
               </span>
             ))}
           </address>
+          <a
+            className="inline-flex items-center font-medium text-[var(--regent-red)] transition-colors hover:text-[var(--regent-red-dark)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--regent-red)] focus-visible:ring-offset-4"
+            href={siteConfig.mapHref}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Open in Maps
+          </a>
           <p>
             Drop off blades, discuss long-term service needs, or coordinate
             delivery and collection with our operations team.
@@ -99,7 +108,7 @@ export function ContactSupportSection() {
             <p className="max-w-[680px] text-lg leading-8 text-[var(--muted)]">
               Regent Technologies supports industrial clients who need reliable
               sharpening turnaround, repeat pickup coordination, and a team
-              that understands production-critical tooling.
+              that understands production-critical tooling and product selection.
             </p>
           </div>
 

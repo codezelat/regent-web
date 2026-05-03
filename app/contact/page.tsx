@@ -9,7 +9,7 @@ import { SiteFooter } from "@/components/regent/layout/site-footer";
 import { contactEmail } from "@/lib/regent-content";
 
 export const metadata: Metadata = {
-  title: "Contact Regent Tech",
+  title: "Contact",
   description:
     "Contact Regent Technologies for industrial blade sharpening, pickup coordination, and service inquiries.",
 };

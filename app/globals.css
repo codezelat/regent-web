@@ -46,6 +46,10 @@ a {
   text-decoration: none;
 }
 
+:focus-visible {
+  outline: none;
+}
+
 img {
   display: block;
 }
