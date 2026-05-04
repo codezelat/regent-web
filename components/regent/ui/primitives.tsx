@@ -24,7 +24,7 @@ export function PillButton({
     variant === "primary"
       ? "bg-[var(--regent-red)] text-white hover:bg-[var(--regent-red-dark)] focus-visible:bg-[var(--regent-red-dark)]"
       : variant === "secondary"
-        ? "border border-white text-white hover:bg-white hover:text-[var(--regent-blue-900)] focus-visible:bg-white focus-visible:text-[var(--regent-blue-900)]"
+        ? "border border-white bg-white text-[var(--regent-blue-900)] hover:bg-[var(--muted-light)] focus-visible:bg-[var(--muted-light)]"
         : variant === "dark"
           ? "bg-[var(--regent-blue-900)] text-white hover:bg-[var(--regent-blue-800)] focus-visible:bg-[var(--regent-blue-800)]"
           : "text-[var(--regent-red)] hover:text-[var(--regent-red-dark)] focus-visible:text-[var(--regent-red-dark)]";
@@ -32,7 +32,7 @@ export function PillButton({
   const shared =
     variant === "text"
       ? "inline-flex items-center gap-2 text-base font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--regent-red)] focus-visible:ring-offset-4 md:text-lg"
-      : "inline-flex items-center justify-center rounded-full px-6 py-4 text-base font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--regent-red)] focus-visible:ring-offset-4 md:text-lg";
+      : "inline-flex min-h-12 items-center justify-center rounded-full px-6 py-3 text-center text-base font-semibold leading-6 shadow-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--regent-red)] focus-visible:ring-offset-4 md:text-lg";
 
   return (
     isInternalHref(href) ? (

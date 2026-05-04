@@ -15,10 +15,10 @@ export function SiteFooter() {
   return (
     <footer className="bg-[var(--regent-blue-900)] text-white">
       <div className="mx-auto max-w-[1440px] px-4 py-20 md:px-12">
-        <div className="grid gap-12 xl:grid-cols-[411px_206px_332px_324px]">
-          <div className="space-y-8">
+        <div className="grid gap-10 lg:grid-cols-2 xl:grid-cols-[minmax(0,1.2fr)_minmax(150px,0.55fr)_minmax(220px,0.85fr)_minmax(260px,1fr)]">
+          <div className="min-w-0 space-y-8">
             <div className="space-y-5">
-              <h2 className="text-3xl font-bold uppercase">REGENT TECHNOLOGIES</h2>
+              <h2 className="text-3xl font-bold uppercase leading-tight">REGENT TECHNOLOGIES</h2>
               <p className="max-w-[411px] text-base leading-8 text-[var(--muted-light)]">
                 Regent Technologies brings {siteConfig.experienceLabel.toLowerCase()} in
                 industrial sharpening, tooling support, and workshop-ready
@@ -62,7 +62,7 @@ export function SiteFooter() {
             )}
           </div>
 
-          <div className="space-y-3">
+          <div className="min-w-0 space-y-3">
             <h3 className="text-xl font-semibold uppercase">Quick Links</h3>
             <div className="flex flex-col">
               {quickLinks.map((item) => (
@@ -71,16 +71,16 @@ export function SiteFooter() {
             </div>
           </div>
 
-          <div className="space-y-3">
-            <h3 className="text-xl font-semibold uppercase">industries</h3>
+          <div className="min-w-0 space-y-3">
+            <h3 className="text-xl font-semibold uppercase">Industries</h3>
             <div className="flex flex-col">
               {footerIndustries.map((item) => (
-                <FooterLink key={item} label={item} href="/#industries" />
+                <FooterLink key={item.title} label={item.title} href={`/industries/${item.slug}`} />
               ))}
             </div>
           </div>
 
-          <div id="footer-contact" className="space-y-3">
+          <div id="footer-contact" className="min-w-0 space-y-3">
             <h3 className="text-xl font-semibold uppercase">Contact info</h3>
             <div className="space-y-4">
               <div className="flex gap-3 py-2">
@@ -89,9 +89,9 @@ export function SiteFooter() {
                   <p className="text-base font-medium uppercase text-[var(--muted-light)]">
                     Address
                   </p>
-                  <address className="flex flex-col text-base leading-8 text-white not-italic">
+                  <address className="flex max-w-full flex-col text-base leading-8 text-white not-italic">
                     {siteConfig.address.map((line) => (
-                      <span key={line}>{line}</span>
+                      <span className="break-words" key={line}>{line}</span>
                     ))}
                   </address>
                 </div>
@@ -103,7 +103,7 @@ export function SiteFooter() {
                     EMAIL
                   </p>
                   <a
-                    className="text-base text-white transition-colors duration-200 hover:text-[var(--muted-light)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--regent-blue-900)]"
+                    className="break-all text-base text-white transition-colors duration-200 hover:text-[var(--muted-light)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--regent-blue-900)]"
                     href={`mailto:${siteConfig.email}`}
                   >
                     {siteConfig.email}

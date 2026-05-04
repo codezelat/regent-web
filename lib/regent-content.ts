@@ -4,7 +4,7 @@ export const navItems = [
   { label: "HOME", href: "/", hasChevron: false },
   { label: "SERVICES", href: "/services", hasChevron: false },
   { label: "PRODUCTS", href: "/products", hasChevron: false },
-  { label: "INDUSTRIES", href: "/#industries", hasChevron: false },
+  { label: "INDUSTRIES", href: "/industries", hasChevron: false },
   { label: "ABOUT US", href: "/about", hasChevron: false },
   { label: "CONTACT", href: "/contact", hasChevron: false },
 ] as const;
@@ -20,38 +20,56 @@ export const aboutHighlights = [
 export const industries = [
   {
     title: "Woodworking Industry",
+    slug: "woodworking-industry",
     description:
-      "We sharpen circular saw blades, router bits, planer blades, and other cutting tools",
+      "Sharpening and product support for circular saw blades, router bits, planer blades, and other woodworking cutting tools.",
+    longDescription:
+      "Woodworking teams depend on clean edges, consistent profiles, and predictable tool life. Regent Technologies supports woodworking shops with sharpening, Arden Router Bits, cutting tools, and practical product guidance for daily production.",
     image: "/regent/industry-woodworking.png",
   },
   {
     title: "Furniture Manufacturing",
+    slug: "furniture-manufacturing",
     description:
-      "We sharpen circular saw blades, router bits, planer blades, and other cutting tools",
+      "Tooling support for furniture makers who need accurate cuts, clean finishes, and dependable repeat production.",
+    longDescription:
+      "Furniture manufacturing needs stable cutting performance across panels, profiles, frames, and finishing work. Regent Technologies helps maintain blades and supports workshops with the right tooling for smoother output.",
     image: "/regent/industry-furniture.png",
   },
   {
     title: "Packaging Industry",
+    slug: "packaging-industry",
     description:
-      "We sharpen circular saw blades, router bits, planer blades, and other cutting tools",
+      "Blade care for packaging operations where clean cutting, uptime, and repeatability matter.",
+    longDescription:
+      "Packaging operations run on repeatable cutting quality. Regent Technologies supports teams with sharpening workflows that reduce avoidable downtime and help keep production moving.",
     image: "/regent/industry-packaging.png",
   },
   {
     title: "Printing Industry",
+    slug: "printing-industry",
     description:
-      "We sharpen circular saw blades, router bits, planer blades, and other cutting tools",
+      "Sharpening support for cutting tools used around print finishing, trimming, and production workflows.",
+    longDescription:
+      "Print finishing and related production work depend on sharp tooling and consistent cuts. Regent Technologies helps maintain those tools with practical service coordination and blade care.",
     image: "/regent/industry-printing.png",
   },
   {
     title: "Metal Fabrication",
+    slug: "metal-fabrication",
     description:
-      "We sharpen circular saw blades, router bits, planer blades, and other cutting tools",
+      "Support for fabrication teams that need durable cutting tools and reliable sharpening turnaround.",
+    longDescription:
+      "Fabrication teams need tools that hold up under demanding workshop conditions. Regent Technologies supports maintenance teams with sharpening and tool care for production-critical cutting work.",
     image: "/regent/industry-metal.png",
   },
   {
     title: "Plastic Processing",
+    slug: "plastic-processing",
     description:
-      "We sharpen circular saw blades, router bits, planer blades, and other cutting tools",
+      "Cutting tool support for plastic processing teams focused on clean edges and stable output.",
+    longDescription:
+      "Plastic processing can expose weak tooling quickly. Regent Technologies supports clean, consistent cutting with blade sharpening, tool care, and direct coordination for active production teams.",
     image: "/regent/industry-plastic.png",
   },
 ] as const;
@@ -117,14 +135,7 @@ export const quickLinks = [
   { label: "Contact us", href: "/contact" },
 ] as const;
 
-export const footerIndustries = [
-  "Woodworking Industry",
-  "Furniture Manufacturing",
-  "Packaging Industry",
-  "Printing Industry",
-  "Metal Fabrication",
-  "Plastic Processing",
-] as const;
+export const footerIndustries = industries.map(({ title, slug }) => ({ title, slug }));
 
 export const contactEmail = siteConfig.email;
 

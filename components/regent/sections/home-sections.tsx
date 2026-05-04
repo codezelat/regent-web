@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import {
   aboutHighlights,
   industries,
@@ -72,14 +73,15 @@ export function IndustriesSection() {
               efficient production, dependable turnaround, and repeatable quality.
             </p>
           </div>
-          <PillButton href="/products" label="Learn More" variant="text" />
+          <PillButton href="/industries" label="View Industries" variant="text" />
         </div>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {industries.map((industry) => (
-            <article
+            <Link
               key={industry.title}
-              className="rounded-lg bg-white px-6 py-8 text-center shadow-[0_0_16px_rgba(0,0,0,0.06)]"
+              className="rounded-lg bg-white px-6 py-8 text-center shadow-[0_0_16px_rgba(0,0,0,0.06)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_18px_36px_rgba(17,37,90,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--regent-red)] focus-visible:ring-offset-4"
+              href={`/industries/${industry.slug}`}
             >
               <div className="mx-auto flex h-16 w-16 items-center justify-center">
                 <Image
@@ -96,7 +98,7 @@ export function IndustriesSection() {
               <p className="mt-4 text-base leading-7 text-[var(--muted)]">
                 {industry.description}
               </p>
-            </article>
+            </Link>
           ))}
         </div>
       </div>
