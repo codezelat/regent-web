@@ -7,7 +7,6 @@ import {
   InstagramIcon,
   MailIcon,
   PhoneIcon,
-  TiktokIcon,
 } from "@/components/regent/ui/icons";
 
 export function SiteHeader({ currentPath = "/" }: { currentPath?: string }) {
@@ -31,40 +30,29 @@ export function SiteHeader({ currentPath = "/" }: { currentPath?: string }) {
             </a>
             <a
               className="inline-flex items-center gap-2 text-white/95 transition-colors duration-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--regent-blue-700)]"
-              href={`tel:${primaryPhone.label}`}
+              href={primaryPhone.href}
             >
               <PhoneIcon className="h-5 w-5" />
               <span>{primaryPhone.label}</span>
             </a>
             {hasSocialLinks ? (
               <div className="flex items-center gap-4 text-white">
-                {siteConfig.socialLinks[0] ? (
+                {siteConfig.socialLinks.map((link) => (
                   <a
-                    aria-label="Instagram"
+                    key={link.label}
+                    aria-label={link.label}
                     className="transition-colors duration-200 hover:text-[var(--muted-light)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--regent-blue-700)]"
-                    href={siteConfig.socialLinks[0].href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
                   >
-                    <InstagramIcon className="h-5 w-5" />
+                    {link.label === "Facebook" ? (
+                      <FacebookIcon className="h-5 w-5" />
+                    ) : (
+                      <InstagramIcon className="h-5 w-5" />
+                    )}
                   </a>
-                ) : null}
-                {siteConfig.socialLinks[1] ? (
-                  <a
-                    aria-label="TikTok"
-                    className="transition-colors duration-200 hover:text-[var(--muted-light)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--regent-blue-700)]"
-                    href={siteConfig.socialLinks[1].href}
-                  >
-                    <TiktokIcon className="h-5 w-5" />
-                  </a>
-                ) : null}
-                {siteConfig.socialLinks[2] ? (
-                  <a
-                    aria-label="Facebook"
-                    className="transition-colors duration-200 hover:text-[var(--muted-light)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--regent-blue-700)]"
-                    href={siteConfig.socialLinks[2].href}
-                  >
-                    <FacebookIcon className="h-5 w-5" />
-                  </a>
-                ) : null}
+                ))}
               </div>
             ) : null}
           </div>
@@ -72,11 +60,31 @@ export function SiteHeader({ currentPath = "/" }: { currentPath?: string }) {
       </div>
 
       <div className="mx-auto max-w-[1440px] px-4 md:px-0">
-        <div className="flex flex-col gap-4 bg-[var(--regent-blue-900)] px-5 py-5 md:mt-[43px] md:h-28 md:flex-row md:items-center md:justify-between md:px-12">
+        <div className="flex flex-col gap-4 bg-[var(--regent-blue-900)] px-5 py-5 md:h-28 md:flex-row md:items-center md:justify-between md:px-12">
           <div className="text-2xl font-bold tracking-[0.08em] text-white">
             REGENT
           </div>
-          <nav className="flex flex-wrap items-center gap-x-1 gap-y-2 text-white">
+          <details className="group md:hidden">
+            <summary className="flex cursor-pointer list-none items-center justify-between rounded-lg border border-white/10 px-4 py-3 text-sm font-semibold text-white">
+              Menu
+              <span className="text-lg leading-none group-open:rotate-45">+</span>
+            </summary>
+            <nav className="mt-3 grid gap-1 rounded-lg bg-white/5 p-2 text-white">
+              {navItems.map((item) => (
+                <Link
+                  key={item.label}
+                  className={`rounded-md px-3 py-3 text-sm font-semibold tracking-[0.04em] transition-colors hover:bg-white/10 ${
+                    currentPath === item.href ? "text-[var(--muted-light)]" : ""
+                  }`}
+                  href={item.href}
+                  aria-current={currentPath === item.href ? "page" : undefined}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+          </details>
+          <nav className="hidden flex-wrap items-center gap-x-1 gap-y-2 text-white md:flex">
             {navItems.map((item) => (
               <Link
                 key={item.label}

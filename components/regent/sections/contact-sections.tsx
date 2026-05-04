@@ -8,6 +8,7 @@ import {
 } from "@/lib/regent-content";
 import { siteConfig } from "@/lib/site-config";
 import { MailIcon, PhoneIcon } from "@/components/regent/ui/icons";
+import { ContactForm } from "@/components/regent/ui/contact-form";
 import { ArrowBullet, SectionEyebrow } from "@/components/regent/ui/primitives";
 
 function ContactInfoCard({
@@ -32,64 +33,63 @@ function ContactInfoCard({
 export function ContactInfoSection() {
   return (
     <section className="mx-auto max-w-[1440px] px-4 py-20 md:px-12 md:py-[104px]">
-      <div className="grid gap-6 lg:grid-cols-3">
-        <ContactInfoCard title="Call Our Team">
-          <div className="inline-flex items-center gap-3 text-[var(--regent-red)]">
-            <PhoneIcon className="h-5 w-5" />
-            <span className="font-semibold text-[var(--foreground)]">Phone Numbers</span>
-          </div>
-          <div className="space-y-1">
-            {contactNumbers.map((number) => (
-              <a
-                key={number}
-                className="block font-medium text-[var(--muted)] transition-colors hover:text-[var(--regent-red)]"
-                href={`tel:+94${number.replace(/\s/g, "").replace(/^0/, "")}`}
-              >
-                {number}
-              </a>
-            ))}
-          </div>
-        </ContactInfoCard>
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
+        <div className="grid gap-6">
+          <ContactInfoCard title="Call Our Team">
+            <div className="inline-flex items-center gap-3 text-[var(--regent-red)]">
+              <PhoneIcon className="h-5 w-5" />
+              <span className="font-semibold text-[var(--foreground)]">Phone Numbers</span>
+            </div>
+            <div className="space-y-1">
+              {contactNumbers.map((number) => (
+                <a
+                  key={number}
+                  className="block font-medium text-[var(--muted)] transition-colors hover:text-[var(--regent-red)]"
+                  href={`tel:+94${number.replace(/\s/g, "").replace(/^0/, "")}`}
+                >
+                  {number}
+                </a>
+              ))}
+            </div>
+          </ContactInfoCard>
 
-        <ContactInfoCard title="Email Your Inquiry">
-          <div className="inline-flex items-center gap-3 text-[var(--regent-red)]">
-            <MailIcon className="h-5 w-5" />
-            <span className="font-semibold text-[var(--foreground)]">Email Address</span>
-          </div>
-          <a
-            className="block font-medium text-[var(--muted)] transition-colors hover:text-[var(--regent-red)]"
-            href={`mailto:${contactEmail}`}
-          >
-            {contactEmail}
-          </a>
-          <p>
-            Send us blade details, service requirements, or pickup requests and
-            we&apos;ll route your message to the right team.
-          </p>
-        </ContactInfoCard>
+          <ContactInfoCard title="Email Your Inquiry">
+            <div className="inline-flex items-center gap-3 text-[var(--regent-red)]">
+              <MailIcon className="h-5 w-5" />
+              <span className="font-semibold text-[var(--foreground)]">Email Address</span>
+            </div>
+            <a
+              className="block font-medium text-[var(--muted)] transition-colors hover:text-[var(--regent-red)]"
+              href={`mailto:${contactEmail}`}
+            >
+              {contactEmail}
+            </a>
+            <p>
+              Send us blade details, service requirements, or pickup requests and
+              we&apos;ll route your message to the right team.
+            </p>
+          </ContactInfoCard>
 
-        <ContactInfoCard title="Visit Our Facility">
-          <p className="font-semibold text-[var(--foreground)]">Address</p>
-          <address className="not-italic text-[var(--muted)]">
-            {contactAddress.map((line) => (
-              <span key={line} className="block">
-                {line}
-              </span>
-            ))}
-          </address>
-          <a
-            className="inline-flex items-center font-medium text-[var(--regent-red)] transition-colors hover:text-[var(--regent-red-dark)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--regent-red)] focus-visible:ring-offset-4"
-            href={siteConfig.mapHref}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Open in Maps
-          </a>
-          <p>
-            Drop off blades, discuss long-term service needs, or coordinate
-            delivery and collection with our operations team.
-          </p>
-        </ContactInfoCard>
+          <ContactInfoCard title="Visit Our Facility">
+            <p className="font-semibold text-[var(--foreground)]">Address</p>
+            <address className="not-italic text-[var(--muted)]">
+              {contactAddress.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
+            </address>
+            <a
+              className="inline-flex items-center font-medium text-[var(--regent-red)] transition-colors hover:text-[var(--regent-red-dark)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--regent-red)] focus-visible:ring-offset-4"
+              href={siteConfig.mapHref}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Open in Maps
+            </a>
+          </ContactInfoCard>
+        </div>
+        <ContactForm turnstileSiteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY} />
       </div>
     </section>
   );

@@ -5,7 +5,7 @@ export const navItems = [
   { label: "SERVICES", href: "/services", hasChevron: false },
   { label: "PRODUCTS", href: "/products", hasChevron: false },
   { label: "INDUSTRIES", href: "/#industries", hasChevron: false },
-  { label: "ABOUT US", href: "/#about", hasChevron: false },
+  { label: "ABOUT US", href: "/about", hasChevron: false },
   { label: "CONTACT", href: "/contact", hasChevron: false },
 ] as const;
 
@@ -113,7 +113,7 @@ export const quickLinks = [
   { label: "HOME", href: "/" },
   { label: "Products", href: "/products" },
   { label: "Services", href: "/services" },
-  { label: "About us", href: "/#about" },
+  { label: "About us", href: "/about" },
   { label: "Contact us", href: "/contact" },
 ] as const;
 

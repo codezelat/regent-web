@@ -3,6 +3,7 @@ import { PageHero } from "@/components/regent/layout/page-hero";
 import { SiteFooter } from "@/components/regent/layout/site-footer";
 import { ContactCtaSection } from "@/components/regent/sections/contact-cta";
 import { FaqSection } from "@/components/regent/sections/faq-section";
+import { listFaqs } from "@/lib/products/queries";
 
 export const metadata: Metadata = {
   title: "FAQ",
@@ -10,7 +11,11 @@ export const metadata: Metadata = {
     "Find answers about Regent Technologies sharpening services, pickups, products, and operational support.",
 };
 
-export default function Page() {
+export const dynamic = "force-dynamic";
+
+export default async function Page() {
+  const faqs = await listFaqs();
+
   return (
     <main className="bg-white text-[var(--foreground)]">
       <PageHero
@@ -22,7 +27,7 @@ export default function Page() {
         imageAlt="Regent Technologies FAQ"
         actions={[{ href: "/contact", label: "Still Need Help?" }]}
       />
-      <FaqSection />
+      <FaqSection items={faqs} />
       <ContactCtaSection />
       <SiteFooter />
     </main>

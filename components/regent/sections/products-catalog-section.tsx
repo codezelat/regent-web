@@ -1,23 +1,26 @@
 import Image from "next/image";
-import { productCatalog } from "@/lib/regent-content";
 import { siteConfig } from "@/lib/site-config";
+import type { Product } from "@/lib/db/schema";
 import { PaginationNav } from "@/components/regent/ui/pagination-nav";
 
-const PAGE_SIZE = 6;
-
-export function getProductsTotalPages() {
-  return Math.ceil(productCatalog.length / PAGE_SIZE);
-}
-
-export function ProductsCatalogSection({ currentPage }: { currentPage: number }) {
-  const totalPages = getProductsTotalPages();
+export function ProductsCatalogSection({
+  items,
+  currentPage,
+  totalPages,
+  query = "",
+  sort = "featured",
+}: {
+  items: Product[];
+  currentPage: number;
+  totalPages: number;
+  query?: string;
+  sort?: string;
+}) {
   const safePage = Math.min(Math.max(currentPage, 1), totalPages);
-  const startIndex = (safePage - 1) * PAGE_SIZE;
-  const items = productCatalog.slice(startIndex, startIndex + PAGE_SIZE);
 
   return (
     <section className="mx-auto max-w-[1440px] px-4 py-20 md:px-12 md:py-[104px]">
-      <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <div className="space-y-3">
           <p className="text-sm font-semibold uppercase tracking-[0.08em] text-[var(--regent-red)]">
             Catalog Page {safePage} of {totalPages}
@@ -30,7 +33,28 @@ export function ProductsCatalogSection({ currentPage }: { currentPage: number })
             support items selected to complement Regent Technologies services.
           </p>
         </div>
-        <PaginationNav currentPage={safePage} totalPages={totalPages} basePath="/products" />
+        <form className="grid w-full gap-3 md:max-w-[420px] md:grid-cols-[1fr_140px]">
+          <label className="sr-only" htmlFor="products-search">
+            Search products
+          </label>
+          <input
+            id="products-search"
+            className="rounded-full border border-black/10 px-5 py-3 text-sm outline-none transition-colors focus:border-[var(--regent-red)]"
+            name="q"
+            defaultValue={query}
+            placeholder="Search products"
+          />
+          <select
+            className="rounded-full border border-black/10 px-5 py-3 text-sm font-semibold outline-none transition-colors focus:border-[var(--regent-red)]"
+            name="sort"
+            defaultValue={sort}
+          >
+            <option value="featured">Featured</option>
+            <option value="name-asc">A-Z</option>
+            <option value="name-desc">Z-A</option>
+            <option value="newest">Newest</option>
+          </select>
+        </form>
       </div>
 
       <div className="mb-10 grid gap-4 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
@@ -68,29 +92,33 @@ export function ProductsCatalogSection({ currentPage }: { currentPage: number })
             className="rounded-2xl border border-black/8 bg-white p-8 shadow-[0_18px_42px_rgba(17,37,90,0.06)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_24px_48px_rgba(17,37,90,0.1)]"
           >
             <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-[var(--surface)]">
-              <Image
-                src={item.image}
-                alt=""
-                width={64}
-                height={64}
-                className="h-16 w-16 object-contain"
-              />
+              {item.images[0] ? (
+                <Image
+                  src={item.images[0]}
+                  alt=""
+                  width={64}
+                  height={64}
+                  className="h-16 w-16 object-contain"
+                />
+              ) : (
+                <span className="text-xs font-semibold text-[var(--muted)]">No image</span>
+              )}
             </div>
             <p className="mt-6 text-sm font-semibold uppercase tracking-[0.08em] text-[var(--regent-red)]">
-              {item.category}
+              Product
             </p>
             <h3 className="mt-3 text-2xl font-bold leading-8 text-[var(--foreground)]">
-              {item.title}
+              {item.name}
             </h3>
             <p className="mt-4 text-lg leading-8 text-[var(--muted)]">
-              {item.summary}
+              {item.description}
             </p>
             <div className="mt-6">
               <a
                 className="inline-flex items-center text-base font-semibold text-[var(--regent-red)] transition-colors duration-200 hover:text-[var(--regent-red-dark)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--regent-red)] focus-visible:ring-offset-4"
-                href="/contact"
+                href={`/products/${item.slug}`}
               >
-                Ask About This Product
+                View Product
               </a>
             </div>
           </article>
@@ -98,7 +126,12 @@ export function ProductsCatalogSection({ currentPage }: { currentPage: number })
       </div>
 
       <div className="mt-12">
-        <PaginationNav currentPage={safePage} totalPages={totalPages} basePath="/products" />
+        <PaginationNav
+          currentPage={safePage}
+          totalPages={totalPages}
+          basePath="/products"
+          query={{ q: query, sort }}
+        />
       </div>
     </section>
   );

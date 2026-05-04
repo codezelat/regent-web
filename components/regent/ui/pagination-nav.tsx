@@ -4,17 +4,35 @@ export function PaginationNav({
   currentPage,
   totalPages,
   basePath,
+  query = {},
 }: {
   currentPage: number;
   totalPages: number;
   basePath: string;
+  query?: Record<string, string | undefined>;
 }) {
   if (totalPages <= 1) {
     return null;
   }
 
-  const hrefForPage = (page: number) =>
-    page === 1 ? basePath : `${basePath}/${page.toString()}`;
+  const hrefForPage = (page: number) => {
+    const params = new URLSearchParams();
+
+    Object.entries(query).forEach(([key, value]) => {
+      if (value) {
+        params.set(key, value);
+      }
+    });
+
+    if (page > 1) {
+      params.set("page", String(page));
+    }
+
+    const path = basePath;
+    const suffix = params.toString();
+
+    return suffix ? `${path}?${suffix}` : path;
+  };
 
   return (
     <nav

@@ -4,7 +4,6 @@ import { siteConfig } from "@/lib/site-config";
 import {
   FacebookIcon,
   InstagramIcon,
-  TiktokIcon,
 } from "@/components/regent/ui/icons";
 import { ChevronRightIcon } from "@/components/regent/ui/icons";
 import { FooterLink, SocialLink } from "@/components/regent/ui/primitives";
@@ -28,21 +27,15 @@ export function SiteFooter() {
             </div>
             {hasSocialLinks ? (
               <div className="flex items-center gap-6">
-                {siteConfig.socialLinks[0] ? (
-                  <SocialLink href={siteConfig.socialLinks[0].href} label="Instagram">
-                    <InstagramIcon className="h-5 w-5" />
+                {siteConfig.socialLinks.map((link) => (
+                  <SocialLink key={link.label} href={link.href} label={link.label}>
+                    {link.label === "Facebook" ? (
+                      <FacebookIcon className="h-5 w-5" />
+                    ) : (
+                      <InstagramIcon className="h-5 w-5" />
+                    )}
                   </SocialLink>
-                ) : null}
-                {siteConfig.socialLinks[1] ? (
-                  <SocialLink href={siteConfig.socialLinks[1].href} label="TikTok">
-                    <TiktokIcon className="h-5 w-5" />
-                  </SocialLink>
-                ) : null}
-                {siteConfig.socialLinks[2] ? (
-                  <SocialLink href={siteConfig.socialLinks[2].href} label="Facebook">
-                    <FacebookIcon className="h-5 w-5" />
-                  </SocialLink>
-                ) : null}
+                ))}
               </div>
             ) : (
               <div className="space-y-3 text-[var(--muted-light)]">

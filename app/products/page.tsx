@@ -3,6 +3,7 @@ import { PageHero } from "@/components/regent/layout/page-hero";
 import { SiteFooter } from "@/components/regent/layout/site-footer";
 import { ContactCtaSection } from "@/components/regent/sections/contact-cta";
 import { ProductsCatalogSection } from "@/components/regent/sections/products-catalog-section";
+import { listProducts, type ProductListParams } from "@/lib/products/queries";
 
 export const metadata: Metadata = {
   title: "Products",
@@ -10,7 +11,20 @@ export const metadata: Metadata = {
     "Browse the Regent Technologies product catalog for industrial tools, accessories, and workshop support products.",
 };
 
-export default function Page() {
+type SearchParams = Promise<{ q?: string; sort?: ProductListParams["sort"]; page?: string }>;
+
+export const dynamic = "force-dynamic";
+
+export default async function Page({ searchParams }: { searchParams: SearchParams }) {
+  const params = await searchParams;
+  const page = Number(params.page || 1);
+  const data = await listProducts({
+    page: Number.isInteger(page) && page > 0 ? page : 1,
+    pageSize: 6,
+    query: params.q,
+    sort: params.sort,
+  });
+
   return (
     <main className="bg-white text-[var(--foreground)]">
       <PageHero
@@ -25,7 +39,13 @@ export default function Page() {
           { href: "/services", label: "View Services", variant: "secondary" },
         ]}
       />
-      <ProductsCatalogSection currentPage={1} />
+      <ProductsCatalogSection
+        items={data.items}
+        currentPage={data.page}
+        totalPages={data.totalPages}
+        query={params.q}
+        sort={params.sort}
+      />
       <ContactCtaSection />
       <SiteFooter />
     </main>

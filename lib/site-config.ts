@@ -1,10 +1,10 @@
 export const siteConfig = {
   name: "Regent Technologies",
   legalName: "Regent Technologies",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.regenttec.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.regenttech.com",
   description:
     "Industrial blade sharpening, pickup and delivery services, professional tools, and workshop support by Regent Technologies.",
-  email: "info@regenttec.com",
+  email: "info@regenttech.com",
   address: [
     "No. 403, Bandaranayake Mawatha",
     "Katubedda, Moratuwa 10400",
@@ -20,7 +20,10 @@ export const siteConfig = {
   ],
   experienceLabel: "20+ years of experience",
   productHighlight: "Sole agents for Arden Router Bits",
-  socialLinks: [] as { label: string; href: string }[],
+  socialLinks: [
+    { label: "Instagram", href: "https://www.instagram.com/RegentTechnologiesPvtLtd/" },
+    { label: "Facebook", href: "https://www.facebook.com/RegentTechnologiesPvtLtd/" },
+  ],
 } as const;
 
 export function getSiteUrl() {

@@ -1,11 +1,11 @@
 import type { MetadataRoute } from "next";
-import { getProductsTotalPages } from "@/components/regent/sections/products-catalog-section";
 import { getSiteUrl } from "@/lib/site-config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = getSiteUrl();
   const routes = [
     "",
+    "/about",
     "/contact",
     "/services",
     "/products",
@@ -14,12 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/terms-of-service",
   ];
 
-  const paginatedProducts = Array.from(
-    { length: Math.max(0, getProductsTotalPages() - 1) },
-    (_, index) => `/products/${String(index + 2)}`,
-  );
-
-  return [...routes, ...paginatedProducts].map((route) => ({
+  return routes.map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: route.startsWith("/products") ? "weekly" : "monthly",
