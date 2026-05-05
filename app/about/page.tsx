@@ -5,13 +5,16 @@ import { SiteFooter } from "@/components/regent/layout/site-footer";
 import { ContactCtaSection } from "@/components/regent/sections/contact-cta";
 import { SectionEyebrow } from "@/components/regent/ui/primitives";
 import { whyChoosePoints } from "@/lib/regent-content";
+import { createPageMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 
-export const metadata: Metadata = {
-  title: "About",
+export const metadata: Metadata = createPageMetadata({
+  title: "About Regent Technologies",
   description:
-    "Learn about Regent Technologies, an industrial sharpening and tooling support company based in Moratuwa, Sri Lanka.",
-};
+    "Learn about Regent Technologies, a Moratuwa-based industrial sharpening and tooling support company with 20+ years of experience in Sri Lanka.",
+  path: "/about",
+  image: "/regent/about.png",
+});
 
 export default function Page() {
   return (

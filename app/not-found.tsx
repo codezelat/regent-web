@@ -1,6 +1,15 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/regent/layout/site-footer";
 import { SiteHeader } from "@/components/regent/layout/site-header";
+
+export const metadata: Metadata = {
+  title: "Page Not Found",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function NotFound() {
   return (

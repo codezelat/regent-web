@@ -1,17 +1,18 @@
 # Regent Technologies Website
 
-Production website and small admin CMS for Regent Technologies.
+Production website and small admin CMS for Regent Technologies, an industrial blade sharpening and tooling support company in Moratuwa, Sri Lanka.
 
-The public site covers services, products, industries, FAQ, contact, legal pages, and an About page. The private admin area lives only under `/hidden-admin` and manages products, FAQ, and the admin profile.
+The public site covers services, products, industries, FAQ, contact, legal pages, and an About page. The private admin area lives only under `/hidden-admin` and manages products, FAQ, and the admin profile. Public pages can render without a database by using seeded fallback content; write actions and admin pages require production services.
 
 ## Stack
 
-- Next.js App Router
+- Next.js App Router with Server Components and Metadata API
 - Better Auth for admin email/password authentication
 - Drizzle ORM with Neon Postgres
 - Cloudflare R2 presigned uploads for product images
 - Resend for password reset and contact emails
 - Cloudflare Turnstile for contact form protection
+- Dynamic sitemap, robots rules, canonical metadata, Open Graph/Twitter metadata, and JSON-LD structured data
 
 ## Local Setup
 
@@ -29,9 +30,9 @@ Copy `.env.example` to `.env.local` and fill only the services you are testing l
 Core production:
 
 ```bash
-NEXT_PUBLIC_SITE_URL="https://www.regenttec.com"
+NEXT_PUBLIC_SITE_URL="https://www.regenttech.com"
 DATABASE_URL="postgresql://..."
-BETTER_AUTH_URL="https://www.regenttec.com"
+BETTER_AUTH_URL="https://www.regenttech.com"
 BETTER_AUTH_SECRET="generate-a-32-byte-or-longer-secret"
 ```
 
@@ -69,6 +70,16 @@ ADMIN_INITIAL_PASSWORD="..."
 ```
 
 Do not commit real admin credentials or filled env files.
+
+## SEO Coverage
+
+- Page titles use the pattern `Page Title - Regent Technologies`.
+- Public pages have canonical URLs, descriptions, Open Graph, and Twitter card metadata.
+- Search and paginated product result URLs are noindexed while canonicalizing to `/products`.
+- Product detail pages include Product JSON-LD; the FAQ page includes FAQPage JSON-LD; the root layout includes LocalBusiness and WebSite JSON-LD.
+- `/sitemap.xml` includes public static pages, industry detail pages, and published product detail pages.
+- `/robots.txt` allows public content and blocks `/hidden-admin/` and `/api/`.
+- Legal pages are noindexed because they are required trust content, not search landing pages.
 
 ## Database
 
@@ -116,12 +127,29 @@ Product fields:
 5. Deploy and verify `/`, `/products`, `/industries`, `/contact`, `/faq`, and `/hidden-admin`.
 6. Submit both the contact form and a product inquiry once with production Turnstile keys enabled.
 
+## Production Review
+
+Before release, check these routes on desktop and mobile widths:
+
+- `/`
+- `/about`
+- `/services`
+- `/products`
+- `/products/precision-blade-sharpening`
+- `/industries`
+- `/industries/woodworking-industry`
+- `/contact`
+- `/faq`
+- `/hidden-admin`
+- `/hidden-admin/dashboard`
+
 ## Verification
 
 ```bash
 npm run lint
+npm run typecheck
 npm run build
 npm audit --omit=dev
 ```
 
-`npm audit --omit=dev` currently reports moderate transitive advisories from Next/PostCSS, Drizzle Kit/esbuild, and Resend/svix. Do not run `npm audit fix --force` without reviewing the resulting package changes because npm proposes breaking/downgrade fixes.
+Do not run `npm audit fix --force` without reviewing the resulting dependency graph. This project uses narrow package overrides for vulnerable transitive packages when the direct dependencies are already on their latest compatible versions.

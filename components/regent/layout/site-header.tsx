@@ -61,9 +61,14 @@ export function SiteHeader({ currentPath = "/" }: { currentPath?: string }) {
 
       <div className="mx-auto max-w-[1440px] px-4 md:px-0">
         <div className="relative flex flex-col gap-4 bg-[var(--regent-blue-900)] px-5 py-5 md:h-28 md:flex-row md:items-center md:justify-between md:px-12">
-          <div className="text-2xl font-bold tracking-[0.08em] text-white">
+          <Link
+            href="/"
+            aria-label="Regent Technologies home"
+            className="inline-flex w-fit text-2xl font-bold tracking-[0.08em] text-white visited:text-white hover:text-white/85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--regent-blue-900)]"
+            style={{ color: "#fff" }}
+          >
             REGENT
-          </div>
+          </Link>
           <details className="group md:hidden">
             <summary className="flex cursor-pointer list-none items-center justify-between rounded-lg border border-white/10 px-4 py-3 text-sm font-semibold text-white">
               Menu

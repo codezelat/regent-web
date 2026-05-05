@@ -6,12 +6,15 @@ import { SiteFooter } from "@/components/regent/layout/site-footer";
 import { ContactCtaSection } from "@/components/regent/sections/contact-cta";
 import { SectionEyebrow } from "@/components/regent/ui/primitives";
 import { industries } from "@/lib/regent-content";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Industries",
+export const metadata: Metadata = createPageMetadata({
+  title: "Industries Served",
   description:
-    "Industries served by Regent Technologies, including woodworking, furniture, packaging, printing, metal fabrication, and plastic processing.",
-};
+    "Regent Technologies supports Sri Lankan woodworking, furniture, packaging, printing, metal fabrication, and plastic processing teams with blade sharpening and tooling support.",
+  path: "/industries",
+  image: "/regent/why-regent.png",
+});
 
 export default function Page() {
   return (

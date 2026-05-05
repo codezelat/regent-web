@@ -3,12 +3,15 @@ import { PageHero } from "@/components/regent/layout/page-hero";
 import { SiteFooter } from "@/components/regent/layout/site-footer";
 import { LegalSections } from "@/components/regent/sections/legal-sections";
 import { termsSections } from "@/lib/regent-content";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Terms of Service",
   description:
     "Read the Regent Technologies terms of service for industrial sharpening, logistics, and related product support.",
-};
+  path: "/terms-of-service",
+  noIndex: true,
+});
 
 export default function Page() {
   return (

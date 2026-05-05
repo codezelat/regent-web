@@ -4,16 +4,29 @@ import { SiteFooter } from "@/components/regent/layout/site-footer";
 import { ContactCtaSection } from "@/components/regent/sections/contact-cta";
 import { ProductsCatalogSection } from "@/components/regent/sections/products-catalog-section";
 import { listProducts } from "@/lib/products/queries";
-
-export const metadata: Metadata = {
-  title: "Products",
-  description:
-    "Browse the Regent Technologies product catalog for industrial tools, accessories, and workshop support products.",
-};
+import { createPageMetadata } from "@/lib/seo";
 
 type SearchParams = Promise<{ q?: string; page?: string }>;
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}): Promise<Metadata> {
+  const params = await searchParams;
+  const hasQueryState = Boolean(params.q?.trim() || params.page);
+
+  return createPageMetadata({
+    title: "Industrial Tools and Blade Sharpening Products Sri Lanka",
+    description:
+      "Browse Regent Technologies products including Arden Router Bits, TCT and HSS blade support, power tools, accessories, and workshop tooling for Sri Lanka.",
+    path: "/products",
+    image: "/regent/products/hand-tools.jpg",
+    noIndex: hasQueryState,
+  });
+}
 
 export default async function Page({ searchParams }: { searchParams: SearchParams }) {
   const params = await searchParams;

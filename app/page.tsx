@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { ContactCtaSection } from "@/components/regent/sections/contact-cta";
 import {
@@ -10,7 +11,16 @@ import {
 import { SiteFooter } from "@/components/regent/layout/site-footer";
 import { SiteHeader } from "@/components/regent/layout/site-header";
 import { PillButton } from "@/components/regent/ui/primitives";
+import { createPageMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
+
+export const metadata: Metadata = createPageMetadata({
+  title: "Industrial Blade Sharpening Services in Sri Lanka",
+  description:
+    "Regent Technologies provides TCT and HSS blade sharpening, pickup and delivery, Arden Router Bits, and industrial tooling support from Moratuwa, Sri Lanka.",
+  path: "/",
+  image: "/regent/hero.png",
+});
 
 export default function Page() {
   return (

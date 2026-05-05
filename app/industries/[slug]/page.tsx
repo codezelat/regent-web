@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/regent/layout/site-footer";
 import { ContactCtaSection } from "@/components/regent/sections/contact-cta";
 import { ArrowBullet, PillButton, SectionEyebrow } from "@/components/regent/ui/primitives";
 import { industries, serviceBenefits } from "@/lib/regent-content";
+import { createPageMetadata } from "@/lib/seo";
 
 type Params = Promise<{ slug: string }>;
 
@@ -18,13 +19,21 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const industry = industries.find((item) => item.slug === slug);
 
   if (!industry) {
-    return { title: "Industry" };
+    return createPageMetadata({
+      title: "Industry Not Found",
+      description: "The requested Regent Technologies industry page could not be found.",
+      path: "/industries",
+      noIndex: true,
+    });
   }
 
-  return {
+  return createPageMetadata({
     title: industry.title,
     description: industry.description,
-  };
+    path: `/industries/${industry.slug}`,
+    image: industry.image,
+    imageAlt: industry.title,
+  });
 }
 
 export default async function Page({ params }: { params: Params }) {

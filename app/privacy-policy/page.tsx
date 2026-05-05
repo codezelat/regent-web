@@ -3,12 +3,15 @@ import { PageHero } from "@/components/regent/layout/page-hero";
 import { SiteFooter } from "@/components/regent/layout/site-footer";
 import { LegalSections } from "@/components/regent/sections/legal-sections";
 import { privacySections } from "@/lib/regent-content";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Privacy Policy",
   description:
     "Read the Regent Technologies privacy policy for information about service inquiries, customer data, and operational records.",
-};
+  path: "/privacy-policy",
+  noIndex: true,
+});
 
 export default function Page() {
   return (

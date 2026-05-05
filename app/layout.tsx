@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { JsonLd } from "@/components/regent/seo/json-ld";
+import { absoluteUrl } from "@/lib/seo";
 import { getSiteUrl, siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
@@ -13,13 +15,23 @@ export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: {
     default: siteConfig.name,
-    template: `%s | ${siteConfig.name}`,
+    template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
-  alternates: {
-    canonical: "/",
-  },
+  keywords: [
+    "industrial blade sharpening Sri Lanka",
+    "TCT blade sharpening Sri Lanka",
+    "HSS blade sharpening Sri Lanka",
+    "blade sharpening Moratuwa",
+    "Regent Technologies",
+    "Arden Router Bits Sri Lanka",
+    "woodworking tools Sri Lanka",
+  ],
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  category: "Industrial blade sharpening and tooling services",
   openGraph: {
     title: siteConfig.name,
     description: siteConfig.description,
@@ -36,6 +48,23 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [absoluteUrl("/regent/hero.png")],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -43,22 +72,54 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const organizationStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: siteConfig.legalName,
-    url: getSiteUrl(),
-    email: siteConfig.email,
-    telephone: siteConfig.phoneNumbers.map((phone) => phone.label),
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: siteConfig.address[0],
-      addressLocality: "Moratuwa",
-      postalCode: "10400",
-      addressCountry: "LK",
+  const siteUrl = getSiteUrl();
+  const organizationStructuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": `${siteUrl}#website`,
+      name: siteConfig.name,
+      url: siteUrl,
+      publisher: {
+        "@id": `${siteUrl}#localbusiness`,
+      },
+      inLanguage: "en",
     },
-    areaServed: "Sri Lanka",
-  };
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "@id": `${siteUrl}#localbusiness`,
+      name: siteConfig.legalName,
+      url: siteUrl,
+      image: absoluteUrl("/regent/hero.png"),
+      description: siteConfig.description,
+      email: siteConfig.email,
+      telephone: siteConfig.phoneNumbers.map((phone) =>
+        phone.href.replace(/^tel:/, ""),
+      ),
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "403 Bandaranayake Mawatha",
+        addressLocality: "Moratuwa",
+        postalCode: "10400",
+        addressCountry: "LK",
+      },
+      areaServed: {
+        "@type": "Country",
+        name: "Sri Lanka",
+      },
+      sameAs: siteConfig.socialLinks.map((link) => link.href),
+      hasMap: siteConfig.mapHref,
+      knowsAbout: [
+        "Industrial blade sharpening",
+        "TCT blade sharpening",
+        "HSS blade sharpening",
+        "Arden Router Bits",
+        "Woodworking tools",
+        "Industrial tooling support",
+      ],
+    },
+  ];
 
   return (
     <html
@@ -67,12 +128,7 @@ export default function RootLayout({
       className={`${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full font-sans">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationStructuredData),
-          }}
-        />
+        <JsonLd data={organizationStructuredData} />
         {children}
       </body>
     </html>

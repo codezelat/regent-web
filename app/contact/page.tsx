@@ -7,12 +7,15 @@ import {
 import { PageHero } from "@/components/regent/layout/page-hero";
 import { SiteFooter } from "@/components/regent/layout/site-footer";
 import { contactEmail } from "@/lib/regent-content";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Contact",
+export const metadata: Metadata = createPageMetadata({
+  title: "Contact Regent Technologies",
   description:
-    "Contact Regent Technologies for industrial blade sharpening, pickup coordination, and service inquiries.",
-};
+    "Contact Regent Technologies in Moratuwa for industrial blade sharpening, pickup coordination, product guidance, and service inquiries in Sri Lanka.",
+  path: "/contact",
+  image: "/regent/hero.png",
+});
 
 export default function Page() {
   return (

@@ -1,8 +1,13 @@
+import type { Metadata } from "next";
 import { ForgotPasswordForm } from "@/components/admin/admin-auth";
 import { siteConfig } from "@/lib/site-config";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Reset Admin Password",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function Page() {

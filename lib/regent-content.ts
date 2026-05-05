@@ -1,7 +1,6 @@
 import { siteConfig } from "@/lib/site-config";
 
 export const navItems = [
-  { label: "HOME", href: "/", hasChevron: false },
   { label: "SERVICES", href: "/services", hasChevron: false },
   { label: "PRODUCTS", href: "/products", hasChevron: false },
   { label: "INDUSTRIES", href: "/industries", hasChevron: false },

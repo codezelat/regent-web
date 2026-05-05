@@ -1,8 +1,13 @@
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import { ResetPasswordForm } from "@/components/admin/admin-auth";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Set Admin Password",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function Page() {

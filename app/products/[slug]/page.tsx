@@ -3,10 +3,12 @@ import { notFound } from "next/navigation";
 import { PageHero } from "@/components/regent/layout/page-hero";
 import { SiteFooter } from "@/components/regent/layout/site-footer";
 import { ContactCtaSection } from "@/components/regent/sections/contact-cta";
+import { JsonLd } from "@/components/regent/seo/json-ld";
 import { ProductGallery } from "@/components/regent/ui/product-gallery";
 import { ProductInquiryModal } from "@/components/regent/ui/product-inquiry-modal";
 import { SectionEyebrow } from "@/components/regent/ui/primitives";
 import { getProductBySlug } from "@/lib/products/queries";
+import { absoluteUrl, createPageMetadata } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-config";
 
 type Params = Promise<{ slug: string }>;
@@ -18,15 +20,21 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   const product = await getProductBySlug(slug);
 
   if (!product) {
-    return {
-      title: "Product",
-    };
+    return createPageMetadata({
+      title: "Product Not Found",
+      description: "The requested Regent Technologies product could not be found.",
+      path: "/products",
+      noIndex: true,
+    });
   }
 
-  return {
+  return createPageMetadata({
     title: product.metaTitle,
     description: product.metaDescription,
-  };
+    path: `/products/${product.slug}`,
+    image: product.images[0] ?? "/regent/products-main.png",
+    imageAlt: product.name,
+  });
 }
 
 export default async function Page({ params }: { params: Params }) {
@@ -39,9 +47,29 @@ export default async function Page({ params }: { params: Params }) {
 
   const heroImage = product.images[0] ?? "/regent/products-main.png";
   const productUrl = `${getSiteUrl()}/products/${product.slug}`;
+  const productStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "@id": `${productUrl}#product`,
+    name: product.name,
+    description: product.description,
+    image: product.images.length
+      ? product.images.map((image) => absoluteUrl(image))
+      : [absoluteUrl("/regent/products-main.png")],
+    url: productUrl,
+    brand: {
+      "@type": "Brand",
+      name: "Regent Technologies",
+    },
+    seller: {
+      "@id": `${getSiteUrl()}#localbusiness`,
+      name: "Regent Technologies",
+    },
+  };
 
   return (
     <main className="bg-white text-[var(--foreground)]">
+      <JsonLd data={productStructuredData} />
       <PageHero
         currentPath="/products"
         eyebrow="Product"
