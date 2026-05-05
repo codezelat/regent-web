@@ -1,6 +1,7 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { nextCookies } from "better-auth/next-js";
+import { adminTurnstilePlugin } from "@/lib/auth-turnstile-plugin";
 import { db, schema } from "@/lib/db";
 import { sendEmail } from "@/lib/email/send";
 import { getSiteUrl, siteConfig } from "@/lib/site-config";
@@ -43,7 +44,7 @@ export const auth = betterAuth({
   trustedOrigins: [process.env.BETTER_AUTH_URL, process.env.NEXT_PUBLIC_SITE_URL]
     .filter(Boolean)
     .map(String),
-  plugins: [nextCookies()],
+  plugins: [adminTurnstilePlugin(), nextCookies()],
 });
 
 export type AuthSession = typeof auth.$Infer.Session;

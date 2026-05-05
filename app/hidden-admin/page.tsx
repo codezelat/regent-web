@@ -29,7 +29,7 @@ export default async function Page() {
         <p className="mb-6 mt-2 text-sm leading-6 text-[#667066]">
           Sign in to manage products and FAQ.
         </p>
-        <AdminLoginForm />
+        <AdminLoginForm turnstileSiteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY} />
       </section>
     </main>
   );

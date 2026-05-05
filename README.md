@@ -25,6 +25,8 @@ Open `http://localhost:3000`.
 
 Copy `.env.example` to `.env.local` and fill only the services you are testing locally. Public pages can build without a database, but admin actions require `DATABASE_URL`.
 
+For local admin testing, point `DATABASE_URL` to a local Postgres database, run migrations, then seed the admin account. For production, replace the same `DATABASE_URL` value with Neon.
+
 ## Required Environment
 
 Core production:
@@ -34,6 +36,14 @@ NEXT_PUBLIC_SITE_URL="https://www.regenttech.com"
 DATABASE_URL="postgresql://..."
 BETTER_AUTH_URL="https://www.regenttech.com"
 BETTER_AUTH_SECRET="generate-a-32-byte-or-longer-secret"
+```
+
+Local Postgres example:
+
+```bash
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/regent"
+BETTER_AUTH_URL="http://localhost:3000"
+BETTER_AUTH_SECRET="use-a-local-32-byte-or-longer-secret"
 ```
 
 Email:

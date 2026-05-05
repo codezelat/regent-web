@@ -3,6 +3,7 @@
 import { getDb, hasDatabase } from "@/lib/db";
 import { contactMessages } from "@/lib/db/schema";
 import { sendEmail } from "@/lib/email/send";
+import { verifyTurnstile } from "@/lib/security/turnstile";
 import { siteConfig } from "@/lib/site-config";
 import { contactInputSchema } from "@/lib/validation/admin";
 
@@ -79,27 +80,6 @@ export async function submitContactAction(
   });
 
   return contactState(true, "Message sent.");
-}
-
-async function verifyTurnstile(token?: string) {
-  if (!process.env.TURNSTILE_SECRET_KEY) {
-    return true;
-  }
-
-  if (!token) {
-    return false;
-  }
-
-  const response = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-    method: "POST",
-    body: new URLSearchParams({
-      secret: process.env.TURNSTILE_SECRET_KEY,
-      response: token,
-    }),
-  });
-  const data = (await response.json()) as { success?: boolean };
-
-  return Boolean(data.success);
 }
 
 function contactState(ok: boolean, message: string): ContactFormState {

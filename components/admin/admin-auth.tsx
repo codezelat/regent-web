@@ -3,12 +3,14 @@
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
+import { TurnstileWidget } from "@/components/regent/ui/turnstile-widget";
 import { authClient } from "@/lib/auth-client";
 
-export function AdminLoginForm() {
+export function AdminLoginForm({ turnstileSiteKey }: { turnstileSiteKey?: string }) {
   const router = useRouter();
   const [pending, startTransition] = useTransition();
   const [message, setMessage] = useState("");
+  const [resetSignal, setResetSignal] = useState(() => crypto.randomUUID());
 
   return (
     <form
@@ -22,10 +24,15 @@ export function AdminLoginForm() {
             email: String(form.get("email") || ""),
             password: String(form.get("password") || ""),
             callbackURL: "/hidden-admin/dashboard",
+          }, {
+            body: {
+              turnstileToken: String(form.get("cf-turnstile-response") || ""),
+            },
           });
 
           if (result.error) {
             setMessage("Check your email and password.");
+            setResetSignal(crypto.randomUUID());
             return;
           }
 
@@ -57,6 +64,11 @@ export function AdminLoginForm() {
         />
       </label>
       {message ? <p className="text-sm font-medium text-[var(--regent-red)]">{message}</p> : null}
+      <TurnstileWidget
+        action="admin-login"
+        resetSignal={resetSignal}
+        siteKey={turnstileSiteKey}
+      />
       <button
         className="rounded-full bg-[var(--regent-blue-900)] px-5 py-3 text-base font-semibold text-white transition-colors hover:bg-[var(--regent-blue-800)] disabled:cursor-not-allowed disabled:opacity-60"
         disabled={pending}
