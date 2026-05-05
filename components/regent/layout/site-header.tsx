@@ -102,14 +102,16 @@ export function SiteHeader({ currentPath = "/" }: { currentPath?: string }) {
             ))}
           </nav>
           <a
-            className="inline-flex items-center bg-[var(--regent-red)] px-6 py-4 text-left text-white transition-colors duration-200 hover:bg-[var(--regent-red-dark)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--regent-blue-900)] md:h-28 md:w-[259px] md:self-stretch"
+            className="inline-flex items-center bg-[var(--regent-red)] px-6 py-4 text-left text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.18)] transition-colors duration-200 hover:bg-[var(--regent-red-dark)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--regent-blue-900)] md:h-28 md:w-[259px] md:self-stretch"
             href={primaryPhone.href}
           >
-            <span className="flex flex-col">
-              <span className="text-sm font-semibold text-white/90">
+            <span className="flex flex-col gap-1">
+              <span className="text-xs font-bold uppercase tracking-[0.12em] text-white/85">
                 CALL US
               </span>
-              <span className="text-xl font-bold">{primaryPhone.label}</span>
+              <span className="text-2xl font-black leading-tight text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.28)]">
+                {primaryPhone.label}
+              </span>
             </span>
           </a>
         </div>
