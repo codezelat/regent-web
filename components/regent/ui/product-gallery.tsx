@@ -18,7 +18,15 @@ export function ProductGallery({
     <div className="flex flex-col gap-4">
       <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl bg-[var(--surface)]">
         {image ? (
-          <Image src={image} alt={name} fill sizes="(max-width: 1024px) 100vw, 560px" className="object-contain p-10" priority />
+          <Image
+            src={image}
+            alt={name}
+            fill
+            sizes="(max-width: 1024px) 100vw, 560px"
+            className="object-cover"
+            fetchPriority="high"
+            loading="eager"
+          />
         ) : (
           <span className="text-sm font-semibold text-[var(--muted)]">Image coming soon</span>
         )}
@@ -34,7 +42,7 @@ export function ProductGallery({
               onClick={() => setActive(index)}
               type="button"
             >
-              <Image src={item} alt="" fill sizes="80px" className="object-contain p-3" />
+              <Image src={item} alt="" fill sizes="80px" className="object-cover" />
             </button>
           ))}
         </div>

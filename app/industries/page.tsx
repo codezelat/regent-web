@@ -23,10 +23,6 @@ export default function Page() {
         description="Regent Technologies supports workshops and industrial teams that depend on clean cuts, predictable tool life, and direct service coordination."
         image="/regent/why-regent.png"
         imageAlt="Industries served by Regent Technologies"
-        actions={[
-          { href: "/contact", label: "Talk To Regent" },
-          { href: "/services", label: "View Services", variant: "secondary" },
-        ]}
       />
       <section className="mx-auto max-w-[1440px] px-4 py-20 md:px-12 md:py-[104px]">
         <div className="mb-12 max-w-[760px]">

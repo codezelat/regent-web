@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Heart } from "lucide-react";
 import { footerIndustries, quickLinks } from "@/lib/regent-content";
 import { siteConfig } from "@/lib/site-config";
 import {
@@ -135,13 +136,20 @@ export function SiteFooter() {
 
         <div className="mt-16 flex flex-col gap-6 border-t border-[var(--regent-blue-700)] pt-6 text-[var(--muted-light)] md:flex-row md:items-center md:justify-between">
           <p className="text-base leading-8">Copyright © {year} {siteConfig.legalName}</p>
-          <div className="flex flex-wrap items-center gap-4 text-base leading-8">
-            <Link
-              className="border-r border-[var(--neutral-400)] pr-4 transition-colors duration-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--regent-blue-900)]"
-              href="/faq"
+          <p className="inline-flex flex-wrap items-center gap-1.5 text-base leading-8">
+            <span>Developed with</span>
+            <Heart className="h-4 w-4 fill-[var(--regent-red)] text-[var(--regent-red)]" aria-label="love" />
+            <span>by</span>
+            <a
+              className="font-semibold text-white transition-colors duration-200 hover:text-[var(--muted-light)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--regent-blue-900)]"
+              href="https://codezela.com"
+              target="_blank"
+              rel="noreferrer"
             >
-              FAQ
-            </Link>
+              Codezela Technologies
+            </a>
+          </p>
+          <div className="flex flex-wrap items-center gap-4 text-base leading-8">
             <Link
               className="border-r border-[var(--neutral-400)] pr-4 transition-colors duration-200 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--regent-blue-900)]"
               href="/privacy-policy"

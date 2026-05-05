@@ -4,11 +4,13 @@ export function PaginationNav({
   currentPage,
   totalPages,
   basePath,
+  fragment,
   query = {},
 }: {
   currentPage: number;
   totalPages: number;
   basePath: string;
+  fragment?: string;
   query?: Record<string, string | undefined>;
 }) {
   if (totalPages <= 1) {
@@ -31,7 +33,9 @@ export function PaginationNav({
     const path = basePath;
     const suffix = params.toString();
 
-    return suffix ? `${path}?${suffix}` : path;
+    const anchor = fragment ? `#${fragment}` : "";
+
+    return suffix ? `${path}?${suffix}${anchor}` : `${path}${anchor}`;
   };
 
   return (
@@ -47,8 +51,9 @@ export function PaginationNav({
             : "bg-[var(--regent-blue-900)] text-white hover:bg-[var(--regent-blue-800)]"
         }`}
         href={hrefForPage(Math.max(1, currentPage - 1))}
+        scroll
       >
-        Previous
+        <span className={currentPage === 1 ? undefined : "text-white"}>Previous</span>
       </Link>
 
       {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
@@ -61,8 +66,9 @@ export function PaginationNav({
               : "border border-black/10 text-[var(--foreground)] hover:border-[var(--regent-red)] hover:text-[var(--regent-red)]"
           }`}
           href={hrefForPage(page)}
+          scroll
         >
-          {page}
+          <span className={page === currentPage ? "text-white" : undefined}>{page}</span>
         </Link>
       ))}
 
@@ -74,8 +80,9 @@ export function PaginationNav({
             : "bg-[var(--regent-blue-900)] text-white hover:bg-[var(--regent-blue-800)]"
         }`}
         href={hrefForPage(Math.min(totalPages, currentPage + 1))}
+        scroll
       >
-        Next
+        <span className={currentPage === totalPages ? undefined : "text-white"}>Next</span>
       </Link>
     </nav>
   );

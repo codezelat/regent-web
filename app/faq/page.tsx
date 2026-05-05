@@ -25,7 +25,6 @@ export default async function Page() {
         description="Use this FAQ to understand how Regent Technologies handles sharpening, logistics, tooling support, and common customer requests."
         image="/regent/video-section.png"
         imageAlt="Regent Technologies FAQ"
-        actions={[{ href: "/contact", label: "Still Need Help?" }]}
       />
       <FaqSection items={faqs} />
       <ContactCtaSection />

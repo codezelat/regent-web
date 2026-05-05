@@ -3,8 +3,8 @@ import Image from "next/image";
 import { PageHero } from "@/components/regent/layout/page-hero";
 import { SiteFooter } from "@/components/regent/layout/site-footer";
 import { ContactCtaSection } from "@/components/regent/sections/contact-cta";
-import { ArrowBullet, SectionEyebrow } from "@/components/regent/ui/primitives";
-import { aboutHighlights, whyChoosePoints } from "@/lib/regent-content";
+import { SectionEyebrow } from "@/components/regent/ui/primitives";
+import { whyChoosePoints } from "@/lib/regent-content";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -23,10 +23,6 @@ export default function Page() {
         description={`Regent Technologies serves production teams, workshops, and woodworking businesses with ${siteConfig.experienceLabel.toLowerCase()} in sharpening and tool support.`}
         image="/regent/about.png"
         imageAlt="Regent Technologies sharpening work"
-        actions={[
-          { href: "/contact", label: "Contact Regent" },
-          { href: "/products", label: "View Products", variant: "secondary" },
-        ]}
       />
       <section className="mx-auto grid max-w-[1440px] gap-12 px-4 py-20 md:px-12 md:py-[104px] lg:grid-cols-[minmax(0,1fr)_560px] lg:items-center">
         <div className="flex flex-col gap-7">
@@ -39,11 +35,21 @@ export default function Page() {
               Regent Technologies focuses on automated blade sharpening, TCT and HSS tool care, product guidance, and pickup coordination for customers who depend on consistent cutting performance.
             </p>
           </div>
-          <ul className="space-y-1">
-            {aboutHighlights.map((item) => (
-              <ArrowBullet key={item}>{item}</ArrowBullet>
-            ))}
-          </ul>
+          <div className="space-y-5 border-l-4 border-[var(--regent-red)] pl-6 text-lg leading-8 text-[var(--muted)]">
+            <p>
+              Based in Moratuwa, the company supports workshops, furniture
+              makers, manufacturers, and industrial teams that need dependable
+              cutting tools for daily production. The work is practical:
+              restore blade performance, protect tool life, and keep service
+              coordination straightforward.
+            </p>
+            <p>
+              Regent combines automated sharpening technology with hands-on
+              tooling knowledge, helping customers choose the right sharpening
+              path, product support, or pickup arrangement without unnecessary
+              complexity.
+            </p>
+          </div>
         </div>
         <Image
           src="/regent/why-regent.png"
@@ -63,11 +69,24 @@ export default function Page() {
                 Reliable service, clear product support, and direct communication.
               </h2>
             </div>
-            <ul className="grid gap-3 md:grid-cols-2">
+            <div className="grid gap-3 md:grid-cols-2">
               {whyChoosePoints.map((item) => (
-                <ArrowBullet key={item}>{item}</ArrowBullet>
+                <details
+                  key={item.title}
+                  className="group rounded-2xl border border-black/8 bg-white px-5 py-4 shadow-[0_14px_34px_rgba(17,37,90,0.05)]"
+                >
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-semibold text-[var(--foreground)]">
+                    <span>{item.title}</span>
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--regent-red)] text-lg leading-none text-white transition-transform group-open:rotate-45">
+                      +
+                    </span>
+                  </summary>
+                  <p className="mt-3 text-base leading-7 text-[var(--muted)]">
+                    {item.detail}
+                  </p>
+                </details>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
       </section>

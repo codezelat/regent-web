@@ -26,18 +26,24 @@ export function PillButton({
       : variant === "secondary"
         ? "border border-white bg-white text-[var(--regent-blue-900)] hover:bg-[var(--muted-light)] focus-visible:bg-[var(--muted-light)]"
         : variant === "dark"
-          ? "bg-[var(--regent-blue-900)] text-white hover:bg-[var(--regent-blue-800)] focus-visible:bg-[var(--regent-blue-800)]"
+          ? "bg-[var(--regent-blue-900)] text-white hover:bg-[var(--regent-blue-800)] hover:text-white focus-visible:bg-[var(--regent-blue-800)] focus-visible:text-white"
           : "text-[var(--regent-red)] hover:text-[var(--regent-red-dark)] focus-visible:text-[var(--regent-red-dark)]";
 
   const shared =
     variant === "text"
       ? "inline-flex items-center gap-2 text-base font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--regent-red)] focus-visible:ring-offset-4 md:text-lg"
       : "inline-flex min-h-12 items-center justify-center rounded-full px-6 py-3 text-center text-base font-semibold leading-6 shadow-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--regent-red)] focus-visible:ring-offset-4 md:text-lg";
+  const labelClass =
+    variant === "primary" || variant === "dark"
+      ? "text-white"
+      : variant === "secondary"
+        ? "text-[var(--regent-blue-900)]"
+        : undefined;
 
   return (
     isInternalHref(href) ? (
       <Link className={`${shared} ${styles} ${className}`} href={href}>
-        <span>{label}</span>
+        <span className={labelClass}>{label}</span>
         {variant === "text" ? <ChevronRightIcon className="h-5 w-5" /> : null}
       </Link>
     ) : (
@@ -47,7 +53,7 @@ export function PillButton({
         target={shouldOpenInNewTab(href) ? "_blank" : undefined}
         rel={shouldOpenInNewTab(href) ? "noreferrer" : undefined}
       >
-        <span>{label}</span>
+        <span className={labelClass}>{label}</span>
         {variant === "text" ? <ChevronRightIcon className="h-5 w-5" /> : null}
       </a>
     )

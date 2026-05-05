@@ -16,7 +16,8 @@ Use this before a Regent Technologies deployment.
 - `BETTER_AUTH_SECRET` is a strong secret and is not reused from local development.
 - Neon `DATABASE_URL` is set.
 - Resend sender domain is verified.
-- Turnstile site key and secret are set.
+- Turnstile site key and secret are both set from the same Cloudflare widget.
+- Cloudflare Turnstile allows the production domain.
 - R2 bucket, credentials, and public base URL are set.
 
 ## Database
@@ -35,5 +36,7 @@ Use this before a Regent Technologies deployment.
 - Public route checks: `/`, `/about`, `/products`, `/industries`, `/contact`, `/faq`
 - Admin route checks: `/hidden-admin`, `/hidden-admin/dashboard`
 - Contact form sends to the configured admin mailbox.
+- Product inquiry modal sends to the configured admin mailbox.
+- Contact and product inquiry forms pass Turnstile without repeated token or refresh errors.
 - Password reset email is delivered.
 - No real admin password is stored in code, docs, or committed env files.

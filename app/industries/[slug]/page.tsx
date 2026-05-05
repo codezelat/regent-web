@@ -44,10 +44,6 @@ export default async function Page({ params }: { params: Params }) {
         description={industry.description}
         image="/regent/hero.png"
         imageAlt={industry.title}
-        actions={[
-          { href: "/contact", label: "Request Support" },
-          { href: "/industries", label: "All Industries", variant: "secondary" },
-        ]}
       />
       <section className="mx-auto grid max-w-[1440px] gap-12 px-4 py-20 md:px-12 md:py-[104px] lg:grid-cols-[minmax(0,1fr)_460px] lg:items-start">
         <div className="flex flex-col gap-7">

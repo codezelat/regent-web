@@ -9,7 +9,11 @@ export const initialProducts = [
     metaTitle: "Precision Blade Sharpening in Sri Lanka",
     metaDescription:
       "Regent Technologies provides automated TCT and HSS blade sharpening with cooling, finishing, pickup, and delivery support.",
-    images: ["/regent/product-precision.png"],
+    images: [
+      "/regent/products/grinding-wheel.jpg",
+      "/regent/products/saw-blade.jpg",
+      "/regent/products/angle-grinder.jpg",
+    ],
     sortOrder: 10,
   },
   {
@@ -20,7 +24,7 @@ export const initialProducts = [
     metaTitle: "Arden Router Bits Sri Lanka",
     metaDescription:
       "Buy Arden Router Bits from Regent Technologies, sole agent for Arden Router Bits in Sri Lanka.",
-    images: ["/regent/product-woodworking.png"],
+    images: ["/regent/products/router-bits.jpg"],
     sortOrder: 20,
   },
   {
@@ -31,7 +35,10 @@ export const initialProducts = [
     metaTitle: "Professional Power Tools",
     metaDescription:
       "Professional power tools for Sri Lankan workshops, factories, maintenance teams, and production environments.",
-    images: ["/regent/product-power.png"],
+    images: [
+      "/regent/products/angle-grinder.jpg",
+      "/regent/products/power-drill.jpg",
+    ],
     sortOrder: 30,
   },
   {
@@ -42,7 +49,7 @@ export const initialProducts = [
     metaTitle: "Tyre Rebuilding Tools",
     metaDescription:
       "Tyre rebuilding tools and workshop support products from Regent Technologies in Sri Lanka.",
-    images: ["/regent/product-tyre.png"],
+    images: ["/regent/products/tyre-rebuild.jpg"],
     sortOrder: 40,
   },
   {
@@ -53,7 +60,7 @@ export const initialProducts = [
     metaTitle: "Woodworking Tools Sri Lanka",
     metaDescription:
       "Woodworking tools, router bits, cutting tools, and workshop accessories from Regent Technologies.",
-    images: ["/regent/product-woodworking.png"],
+    images: ["/regent/products/router-bits.jpg"],
     sortOrder: 50,
   },
   {
@@ -64,7 +71,10 @@ export const initialProducts = [
     metaTitle: "Power Tool Accessories",
     metaDescription:
       "Power tool accessories and workshop consumables for reliable daily industrial use.",
-    images: ["/regent/product-accessories.png"],
+    images: [
+      "/regent/products/drill-bits.jpg",
+      "/regent/products/grinding-wheel.jpg",
+    ],
     sortOrder: 60,
   },
   {
@@ -75,7 +85,7 @@ export const initialProducts = [
     metaTitle: "Workshop Hand Tools",
     metaDescription:
       "Hand tools for technicians, fabrication, maintenance, and workshop teams from Regent Technologies.",
-    images: ["/regent/product-handtools.png"],
+    images: ["/regent/products/hand-tools.jpg"],
     sortOrder: 70,
   },
   {
@@ -86,7 +96,10 @@ export const initialProducts = [
     metaTitle: "TCT Blades and Sharpening",
     metaDescription:
       "TCT blades and sharpening support for industrial cutting applications in Sri Lanka.",
-    images: ["/regent/product-woodworking.png"],
+    images: [
+      "/regent/products/saw-blade.jpg",
+      "/regent/products/grinding-wheel.jpg",
+    ],
     sortOrder: 80,
   },
   {
@@ -97,7 +110,10 @@ export const initialProducts = [
     metaTitle: "HSS Blades and Sharpening",
     metaDescription:
       "HSS blade support and sharpening service for workshops and production teams.",
-    images: ["/regent/product-precision.png"],
+    images: [
+      "/regent/products/grinding-wheel.jpg",
+      "/regent/products/drill-bits.jpg",
+    ],
     sortOrder: 90,
   },
   {
@@ -108,7 +124,10 @@ export const initialProducts = [
     metaTitle: "Industrial Drills",
     metaDescription:
       "Industrial drills and workshop tool support for demanding production and maintenance teams.",
-    images: ["/regent/product-power.png"],
+    images: [
+      "/regent/products/power-drill.jpg",
+      "/regent/products/drill-bits.jpg",
+    ],
     sortOrder: 100,
   },
   {
@@ -119,7 +138,7 @@ export const initialProducts = [
     metaTitle: "Rebuild Wheel Systems",
     metaDescription:
       "Rebuild wheel systems and compatible tooling support for workshop operations.",
-    images: ["/regent/product-tyre.png"],
+    images: ["/regent/products/tyre-rebuild.jpg"],
     sortOrder: 110,
   },
   {
@@ -130,7 +149,10 @@ export const initialProducts = [
     metaTitle: "Workshop Maintenance Kits",
     metaDescription:
       "Maintenance kits and workshop consumables for routine servicing and tool care.",
-    images: ["/regent/product-accessories.png"],
+    images: [
+      "/regent/products/hand-tools.jpg",
+      "/regent/products/drill-bits.jpg",
+    ],
     sortOrder: 120,
   },
   {
@@ -141,7 +163,7 @@ export const initialProducts = [
     metaTitle: "Technician Toolkits",
     metaDescription:
       "Portable technician toolkits for service work, maintenance, and field-ready workshop support.",
-    images: ["/regent/product-handtools.png"],
+    images: ["/regent/products/hand-tools.jpg"],
     sortOrder: 130,
   },
 ] as const;

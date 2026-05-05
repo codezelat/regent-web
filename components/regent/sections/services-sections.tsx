@@ -1,6 +1,31 @@
 import Image from "next/image";
 import { serviceBenefits, serviceProcess, services } from "@/lib/regent-content";
-import { ArrowBullet, PillButton, SectionEyebrow } from "@/components/regent/ui/primitives";
+import { SectionEyebrow } from "@/components/regent/ui/primitives";
+import { ServiceDetailsModal } from "@/components/regent/ui/service-details-modal";
+
+function ServiceBenefitBullet({ children }: { children: string }) {
+  return (
+    <li className="flex gap-3 rounded-2xl bg-white p-4 text-base font-semibold leading-7 text-[var(--neutral-800)] shadow-[0_12px_30px_rgba(17,37,90,0.05)]">
+      <span className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--regent-red-soft)] text-[var(--regent-red)]">
+        <svg
+          aria-hidden="true"
+          className="h-4 w-4"
+          fill="none"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10 3.333 12.06 7.51l4.607.67-3.334 3.25.787 4.588L10 13.852l-4.12 2.166.787-4.588-3.334-3.25 4.607-.67L10 3.333Z"
+            stroke="currentColor"
+            strokeLinejoin="round"
+            strokeWidth="1.5"
+          />
+        </svg>
+      </span>
+      <span>{children}</span>
+    </li>
+  );
+}
 
 export function ServicesOverviewSection() {
   return (
@@ -42,7 +67,12 @@ export function ServicesOverviewSection() {
                   </p>
                 </div>
                 <div>
-                  <PillButton href="/contact" label={service.cta} />
+                  <ServiceDetailsModal
+                    title={service.title}
+                    intro={service.modalIntro}
+                    details={service.details}
+                    bestFor={service.bestFor}
+                  />
                 </div>
               </div>
             </article>
@@ -70,9 +100,9 @@ export function ServicesBenefitsSection() {
             </p>
           </div>
 
-          <ul className="space-y-1">
+          <ul className="grid gap-3">
             {serviceBenefits.map((item) => (
-              <ArrowBullet key={item}>{item}</ArrowBullet>
+              <ServiceBenefitBullet key={item}>{item}</ServiceBenefitBullet>
             ))}
           </ul>
         </div>

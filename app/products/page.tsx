@@ -3,7 +3,7 @@ import { PageHero } from "@/components/regent/layout/page-hero";
 import { SiteFooter } from "@/components/regent/layout/site-footer";
 import { ContactCtaSection } from "@/components/regent/sections/contact-cta";
 import { ProductsCatalogSection } from "@/components/regent/sections/products-catalog-section";
-import { listProducts, type ProductListParams } from "@/lib/products/queries";
+import { listProducts } from "@/lib/products/queries";
 
 export const metadata: Metadata = {
   title: "Products",
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "Browse the Regent Technologies product catalog for industrial tools, accessories, and workshop support products.",
 };
 
-type SearchParams = Promise<{ q?: string; sort?: ProductListParams["sort"]; page?: string }>;
+type SearchParams = Promise<{ q?: string; page?: string }>;
 
 export const dynamic = "force-dynamic";
 
@@ -20,9 +20,8 @@ export default async function Page({ searchParams }: { searchParams: SearchParam
   const page = Number(params.page || 1);
   const data = await listProducts({
     page: Number.isInteger(page) && page > 0 ? page : 1,
-    pageSize: 6,
+    pageSize: 9,
     query: params.q,
-    sort: params.sort,
   });
 
   return (
@@ -32,7 +31,7 @@ export default async function Page({ searchParams }: { searchParams: SearchParam
         eyebrow="Product Catalog"
         title="Professional Tools, Accessories, And Industrial Product Support"
         description="Browse the Regent Technologies product catalog for workshop tools, accessories, and industrial support products aligned with our sharpening and maintenance services."
-        image="/regent/products-main.png"
+        image="/regent/products/hand-tools.jpg"
         imageAlt="Regent Technologies product catalog"
         actions={[
           { href: "/contact", label: "Ask About Products" },
@@ -44,7 +43,6 @@ export default async function Page({ searchParams }: { searchParams: SearchParam
         currentPage={data.page}
         totalPages={data.totalPages}
         query={params.q}
-        sort={params.sort}
       />
       <ContactCtaSection />
       <SiteFooter />

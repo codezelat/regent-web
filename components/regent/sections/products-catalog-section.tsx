@@ -1,25 +1,40 @@
 import Image from "next/image";
+import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
 import type { Product } from "@/lib/db/schema";
 import { PaginationNav } from "@/components/regent/ui/pagination-nav";
+
+const productCategoryBySlug: Record<string, string> = {
+  "precision-blade-sharpening": "Sharpening Services",
+  "arden-router-bits": "Featured Brand",
+  "power-tools": "Machines & Tools",
+  "tyre-rebuilding-tools": "Industrial Equipment",
+  "woodworking-tools": "Cutting Tools",
+  "power-tool-accessories": "Accessories",
+  "hand-tools": "Workshop Essentials",
+  "tct-blades": "Cutting Tools",
+  "hss-blades": "Cutting Tools",
+  "industrial-drills": "Drilling Tools",
+  "rebuild-wheel-systems": "Industrial Equipment",
+  "maintenance-kits": "Accessories",
+  "technician-toolkits": "Workshop Essentials",
+};
 
 export function ProductsCatalogSection({
   items,
   currentPage,
   totalPages,
   query = "",
-  sort = "featured",
 }: {
   items: Product[];
   currentPage: number;
   totalPages: number;
   query?: string;
-  sort?: string;
 }) {
   const safePage = Math.min(Math.max(currentPage, 1), totalPages);
 
   return (
-    <section className="mx-auto max-w-[1440px] px-4 py-20 md:px-12 md:py-[104px]">
+    <section id="products-catalog" className="scroll-mt-8 mx-auto max-w-[1440px] px-4 py-20 md:px-12 md:py-[104px]">
       <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <div className="space-y-3">
           <p className="text-sm font-semibold uppercase tracking-[0.08em] text-[var(--regent-red)]">
@@ -33,7 +48,7 @@ export function ProductsCatalogSection({
             support items selected to complement Regent Technologies services.
           </p>
         </div>
-        <form className="grid w-full gap-3 md:max-w-[420px] md:grid-cols-[1fr_140px]">
+        <form className="grid w-full gap-3 md:max-w-[520px] md:grid-cols-[1fr_auto]" action="/products#products-catalog">
           <label className="sr-only" htmlFor="products-search">
             Search products
           </label>
@@ -44,93 +59,86 @@ export function ProductsCatalogSection({
             defaultValue={query}
             placeholder="Search products"
           />
-          <select
-            className="rounded-full border border-black/10 px-5 py-3 text-sm font-semibold outline-none transition-colors focus:border-[var(--regent-red)]"
-            name="sort"
-            defaultValue={sort}
+          <button
+            className="rounded-full bg-[var(--regent-red)] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--regent-red-dark)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--regent-red)] focus-visible:ring-offset-4"
+            type="submit"
           >
-            <option value="featured">Featured</option>
-            <option value="name-asc">A-Z</option>
-            <option value="name-desc">Z-A</option>
-            <option value="newest">Newest</option>
-          </select>
+            <span className="text-white">Search</span>
+          </button>
         </form>
       </div>
 
-      <div className="mb-10 grid gap-4 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
-        <article className="rounded-2xl bg-[var(--regent-blue-900)] p-8 text-white shadow-[0_18px_42px_rgba(17,37,90,0.16)]">
-          <p className="text-sm font-semibold uppercase tracking-[0.08em] text-white/75">
-            Featured Product Support
+      <div className="mb-10 rounded-2xl border border-[var(--regent-red)]/15 bg-[var(--regent-red-soft)] px-6 py-5 md:flex md:items-center md:justify-between md:gap-8">
+        <div className="space-y-1">
+          <p className="text-sm font-semibold uppercase tracking-[0.08em] text-[var(--regent-red)]">
+            Featured Brand
           </p>
-          <h3 className="mt-3 text-3xl font-bold leading-[1.2]">
+          <h3 className="text-xl font-bold leading-8 text-[var(--foreground)]">
             {siteConfig.productHighlight}
           </h3>
-          <p className="mt-4 max-w-[640px] text-lg leading-8 text-[var(--muted-light)]">
-            Ask our team about Arden Router Bits, matching cutter profiles, and
-            the right options for woodworking and production use.
-          </p>
-        </article>
-        <article className="rounded-2xl border border-black/8 bg-[var(--surface)] p-8 shadow-[0_18px_42px_rgba(17,37,90,0.06)]">
-          <p className="text-sm font-semibold uppercase tracking-[0.08em] text-[var(--regent-red)]">
-            Trusted Experience
-          </p>
-          <h3 className="mt-3 text-2xl font-bold leading-8 text-[var(--foreground)]">
-            {siteConfig.experienceLabel}
-          </h3>
-          <p className="mt-4 text-lg leading-8 text-[var(--muted)]">
-            Regent Technologies supports industrial workshops and production
-            teams with sharpening expertise, product guidance, and practical
-            service coordination.
-          </p>
-        </article>
+        </div>
+        <p className="mt-3 max-w-[640px] text-base leading-7 text-[var(--muted)] md:mt-0">
+          Ask our team about Arden Router Bits, matching cutter profiles, and
+          practical options for woodworking and production use.
+        </p>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {items.map((item) => (
-          <article
-            key={item.slug}
-            className="rounded-2xl border border-black/8 bg-white p-8 shadow-[0_18px_42px_rgba(17,37,90,0.06)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_24px_48px_rgba(17,37,90,0.1)]"
-          >
-            <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-[var(--surface)]">
-              {item.images[0] ? (
-                <Image
-                  src={item.images[0]}
-                  alt=""
-                  width={64}
-                  height={64}
-                  className="h-16 w-16 object-contain"
-                />
-              ) : (
-                <span className="text-xs font-semibold text-[var(--muted)]">No image</span>
-              )}
-            </div>
-            <p className="mt-6 text-sm font-semibold uppercase tracking-[0.08em] text-[var(--regent-red)]">
-              Product
-            </p>
-            <h3 className="mt-3 text-2xl font-bold leading-8 text-[var(--foreground)]">
-              {item.name}
-            </h3>
-            <p className="mt-4 text-lg leading-8 text-[var(--muted)]">
-              {item.description}
-            </p>
-            <div className="mt-6">
-              <a
-                className="inline-flex items-center text-base font-semibold text-[var(--regent-red)] transition-colors duration-200 hover:text-[var(--regent-red-dark)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--regent-red)] focus-visible:ring-offset-4"
-                href={`/products/${item.slug}`}
-              >
-                View Product
-              </a>
-            </div>
-          </article>
-        ))}
-      </div>
+      {items.length ? (
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {items.map((item) => (
+            <Link
+              key={item.slug}
+              className="group overflow-hidden rounded-2xl border border-black/8 bg-white shadow-[0_18px_42px_rgba(17,37,90,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_28px_60px_rgba(17,37,90,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--regent-red)] focus-visible:ring-offset-4"
+              href={`/products/${item.slug}`}
+            >
+              <div className="relative aspect-[4/3] overflow-hidden bg-[var(--surface)]">
+                {item.images[0] ? (
+                  <Image
+                    src={item.images[0]}
+                    alt={item.name}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                  />
+                ) : (
+                  <span className="flex h-full items-center justify-center text-sm font-semibold text-[var(--muted)]">
+                    Image coming soon
+                  </span>
+                )}
+              </div>
+              <div className="p-6">
+                <p className="text-sm font-semibold uppercase tracking-[0.08em] text-[var(--regent-red)]">
+                  {productCategoryBySlug[item.slug] ?? "Product"}
+                </p>
+                <h3 className="mt-3 text-2xl font-bold leading-8 text-[var(--foreground)]">
+                  {item.name}
+                </h3>
+                <p className="mt-4 text-base leading-7 text-[var(--muted)]">
+                  {item.description}
+                </p>
+                <span className="mt-6 inline-flex text-base font-semibold text-[var(--regent-red)] transition-colors duration-200 group-hover:text-[var(--regent-red-dark)]">
+                  View Product
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      ) : (
+        <div className="rounded-2xl border border-black/8 bg-white p-8 text-center shadow-[0_18px_42px_rgba(17,37,90,0.06)]">
+          <h3 className="text-2xl font-bold text-[var(--foreground)]">No products found</h3>
+          <p className="mt-3 text-base leading-7 text-[var(--muted)]">
+            Try a different product name, tool type, or service keyword.
+          </p>
+        </div>
+      )}
 
       <div className="mt-12">
         <PaginationNav
           currentPage={safePage}
           totalPages={totalPages}
           basePath="/products"
-          query={{ q: query, sort }}
+          fragment="products-catalog"
+          query={{ q: query }}
         />
       </div>
     </section>

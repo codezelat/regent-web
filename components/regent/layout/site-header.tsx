@@ -60,7 +60,7 @@ export function SiteHeader({ currentPath = "/" }: { currentPath?: string }) {
       </div>
 
       <div className="mx-auto max-w-[1440px] px-4 md:px-0">
-        <div className="flex flex-col gap-4 bg-[var(--regent-blue-900)] px-5 py-5 md:h-28 md:flex-row md:items-center md:justify-between md:px-12">
+        <div className="relative flex flex-col gap-4 bg-[var(--regent-blue-900)] px-5 py-5 md:h-28 md:flex-row md:items-center md:justify-between md:px-12">
           <div className="text-2xl font-bold tracking-[0.08em] text-white">
             REGENT
           </div>
@@ -69,11 +69,11 @@ export function SiteHeader({ currentPath = "/" }: { currentPath?: string }) {
               Menu
               <span className="text-lg leading-none group-open:rotate-45">+</span>
             </summary>
-            <nav className="mt-3 grid gap-1 rounded-lg bg-white/5 p-2 text-white">
+            <nav className="absolute left-5 right-5 top-[calc(100%+0.5rem)] z-50 grid gap-1 rounded-xl border border-white/10 bg-[var(--regent-blue-900)] p-2 text-white shadow-2xl shadow-black/35">
               {navItems.map((item) => (
                 <Link
                   key={item.label}
-                  className={`rounded-md px-3 py-3 text-sm font-semibold tracking-[0.04em] transition-colors hover:bg-white/10 ${
+                  className={`rounded-lg px-3 py-3 text-sm font-semibold tracking-[0.04em] transition-colors hover:bg-white/10 ${
                     currentPath === item.href ? "text-[var(--muted-light)]" : ""
                   }`}
                   href={item.href}

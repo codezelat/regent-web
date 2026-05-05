@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { ReactNode } from "react";
 import { PillButton, SectionEyebrow } from "@/components/regent/ui/primitives";
 import { SiteHeader } from "@/components/regent/layout/site-header";
 
@@ -16,6 +17,7 @@ export function PageHero({
   image,
   imageAlt,
   actions = [],
+  children,
 }: {
   currentPath: string;
   eyebrow: string;
@@ -24,6 +26,7 @@ export function PageHero({
   image: string;
   imageAlt: string;
   actions?: HeroAction[];
+  children?: ReactNode;
 }) {
   return (
     <section className="relative isolate overflow-hidden bg-[var(--regent-blue-950)]">
@@ -31,7 +34,7 @@ export function PageHero({
         src={image}
         alt={imageAlt}
         fill
-        priority
+        preload
         className="object-cover object-center"
         sizes="100vw"
       />
@@ -52,8 +55,9 @@ export function PageHero({
           <p className="max-w-[720px] text-lg leading-8 text-[var(--muted-light)]">
             {description}
           </p>
-          {actions.length ? (
+          {actions.length || children ? (
             <div className="flex flex-wrap gap-4">
+              {children}
               {actions.map((action) => (
                 <PillButton
                   key={`${action.href}-${action.label}`}

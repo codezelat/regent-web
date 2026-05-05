@@ -20,7 +20,6 @@ export default function Page() {
         description="This page explains how Regent Technologies handles customer information related to inquiries, service coordination, and operational communication."
         image="/regent/hero.png"
         imageAlt="Privacy Policy"
-        actions={[{ href: "/contact", label: "Contact Regent" }]}
       />
       <LegalSections sections={privacySections} />
       <SiteFooter />

@@ -49,6 +49,8 @@ NEXT_PUBLIC_TURNSTILE_SITE_KEY="..."
 TURNSTILE_SECRET_KEY="..."
 ```
 
+Use both keys from the same Cloudflare Turnstile widget and add the production domain in Cloudflare. For local development, leave both Turnstile values empty to bypass the challenge. Do not set only `TURNSTILE_SECRET_KEY`; the server will reject submissions because the browser cannot produce a token without `NEXT_PUBLIC_TURNSTILE_SITE_KEY`.
+
 Cloudflare R2:
 
 ```bash
@@ -112,6 +114,7 @@ Product fields:
 3. Run `npm run db:seed` once with admin seed env vars present.
 4. Remove seed-only env vars from Vercel after the admin account exists.
 5. Deploy and verify `/`, `/products`, `/industries`, `/contact`, `/faq`, and `/hidden-admin`.
+6. Submit both the contact form and a product inquiry once with production Turnstile keys enabled.
 
 ## Verification
 

@@ -4,8 +4,10 @@ import { PageHero } from "@/components/regent/layout/page-hero";
 import { SiteFooter } from "@/components/regent/layout/site-footer";
 import { ContactCtaSection } from "@/components/regent/sections/contact-cta";
 import { ProductGallery } from "@/components/regent/ui/product-gallery";
-import { PillButton, SectionEyebrow } from "@/components/regent/ui/primitives";
+import { ProductInquiryModal } from "@/components/regent/ui/product-inquiry-modal";
+import { SectionEyebrow } from "@/components/regent/ui/primitives";
 import { getProductBySlug } from "@/lib/products/queries";
+import { getSiteUrl } from "@/lib/site-config";
 
 type Params = Promise<{ slug: string }>;
 
@@ -35,6 +37,9 @@ export default async function Page({ params }: { params: Params }) {
     notFound();
   }
 
+  const heroImage = product.images[0] ?? "/regent/products-main.png";
+  const productUrl = `${getSiteUrl()}/products/${product.slug}`;
+
   return (
     <main className="bg-white text-[var(--foreground)]">
       <PageHero
@@ -42,13 +47,19 @@ export default async function Page({ params }: { params: Params }) {
         eyebrow="Product"
         title={product.name}
         description={product.metaDescription}
-        image="/regent/products-main.png"
+        image={heroImage}
         imageAlt={product.name}
         actions={[
-          { href: "/contact", label: "Ask About This Product" },
           { href: "/products", label: "All Products", variant: "secondary" },
         ]}
-      />
+      >
+        <ProductInquiryModal
+          productName={product.name}
+          productSlug={product.slug}
+          productUrl={productUrl}
+          turnstileSiteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+        />
+      </PageHero>
       <section className="mx-auto grid max-w-[1440px] gap-12 px-4 py-20 md:px-12 md:py-[104px] lg:grid-cols-[minmax(0,560px)_minmax(0,1fr)] lg:items-start">
         <ProductGallery images={product.images} name={product.name} />
         <div className="flex flex-col gap-7">
@@ -66,10 +77,6 @@ export default async function Page({ params }: { params: Params }) {
             <p className="mt-3 text-base leading-7 text-[var(--muted)]">
               Send the product name, quantity, and application details. The Regent team will confirm the best option.
             </p>
-          </div>
-          <div className="flex flex-wrap gap-4">
-            <PillButton href="/contact" label="Contact Regent" />
-            <PillButton href="/products" label="Back To Products" variant="dark" />
           </div>
         </div>
       </section>

@@ -20,7 +20,6 @@ export default function Page() {
         description="These terms outline the service relationship, operational expectations, and product-related conditions associated with Regent Technologies."
         image="/regent/hero.png"
         imageAlt="Terms Of Service"
-        actions={[{ href: "/contact", label: "Contact Regent" }]}
       />
       <LegalSections sections={termsSections} />
       <SiteFooter />

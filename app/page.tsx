@@ -5,7 +5,6 @@ import {
   HomeServicesSection,
   IndustriesSection,
   ProductsPreviewSection,
-  VideoShowcaseSection,
   WhyRegentSection,
 } from "@/components/regent/sections/home-sections";
 import { SiteFooter } from "@/components/regent/layout/site-footer";
@@ -24,7 +23,7 @@ export default function Page() {
           src="/regent/hero.png"
           alt="Industrial blade sharpening hero"
           fill
-          priority
+          preload
           className="object-cover object-center"
           sizes="100vw"
         />
@@ -44,23 +43,12 @@ export default function Page() {
               </p>
             </div>
             <div className="flex flex-wrap gap-4">
-              <PillButton href="/contact" label="Request Blade Pickup" />
+              <PillButton href="/products" label="View Products" />
               <PillButton
                 href="/contact"
                 label="Contact us"
                 variant="secondary"
               />
-            </div>
-            <div className="flex flex-wrap gap-3 text-sm font-semibold text-white/85">
-              <span className="rounded-full border border-white/20 bg-white/8 px-4 py-2">
-                {siteConfig.experienceLabel}
-              </span>
-              <span className="rounded-full border border-white/20 bg-white/8 px-4 py-2">
-                {siteConfig.productHighlight}
-              </span>
-              <span className="rounded-full border border-white/20 bg-white/8 px-4 py-2">
-                Moratuwa 10400
-              </span>
             </div>
           </div>
         </div>
@@ -70,7 +58,6 @@ export default function Page() {
       <IndustriesSection />
       <HomeServicesSection />
       <ProductsPreviewSection />
-      <VideoShowcaseSection />
       <WhyRegentSection />
       <ContactCtaSection />
       <SiteFooter />

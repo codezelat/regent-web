@@ -51,6 +51,10 @@ export const contactInputSchema = z.object({
   email: z.string().trim().email("Use a valid email address.").max(160),
   phone: z.string().trim().max(40).optional(),
   message: z.string().trim().min(12, "Message is required.").max(1500),
+  subject: z.string().trim().max(160).optional(),
+  productName: z.string().trim().max(120).optional(),
+  productSlug: z.string().trim().max(120).optional(),
+  productUrl: z.string().trim().max(300).optional(),
   turnstileToken: z.string().optional(),
 });
 
