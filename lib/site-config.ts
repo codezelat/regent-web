@@ -19,6 +19,7 @@ export const siteConfig = {
   ],
   experienceLabel: "20+ years of experience",
   productHighlight: "Sole importer for ARDEN routing tools",
+  googleAnalyticsId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ?? "G-LK0KSVKHK1",
   socialLinks: [
     { label: "Instagram", href: "https://www.instagram.com/RegentTechnologiesPvtLtd/" },
     { label: "Facebook", href: "https://www.facebook.com/RegentTechnologiesPvtLtd/" },

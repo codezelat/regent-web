@@ -12,6 +12,7 @@ The public site covers services, products, industries, FAQ, contact, legal pages
 - Cloudflare R2 presigned uploads for product images
 - Resend for password reset and contact emails
 - Cloudflare Turnstile for contact form protection
+- Google Analytics 4 through `@next/third-parties/google`
 - Dynamic sitemap, robots rules, canonical metadata, Open Graph/Twitter metadata, and JSON-LD structured data
 
 ## Local Setup
@@ -33,6 +34,7 @@ Core production:
 
 ```bash
 NEXT_PUBLIC_SITE_URL="https://www.regenttech.lk"
+NEXT_PUBLIC_GA_MEASUREMENT_ID="optional-public-ga4-measurement-id"
 DATABASE_URL="postgresql://..."
 BETTER_AUTH_URL="https://www.regenttech.lk"
 BETTER_AUTH_SECRET="generate-a-32-byte-or-longer-secret"
@@ -90,6 +92,7 @@ Do not commit real admin credentials or filled env files.
 - Product and industry listing pages include ItemList JSON-LD that matches the visible page content.
 - `/sitemap.xml` includes public static pages, industry detail pages, published product detail pages, and crawlable image sitemap entries for key page/product images.
 - `/robots.txt` allows public content and blocks `/hidden-admin/` and `/api/`.
+- Google Analytics loads only on public routes. `/hidden-admin`, password reset, and dashboard routes do not load the Google tag.
 - Legal pages are noindexed because they are required trust content, not search landing pages, and they are intentionally left out of the sitemap.
 
 ## Database

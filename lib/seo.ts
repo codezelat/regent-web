@@ -87,6 +87,15 @@ export function createPageMetadata({
   };
 }
 
+export const privateRouteRobots = {
+  index: false,
+  follow: false,
+  googleBot: {
+    index: false,
+    follow: false,
+  },
+} as const;
+
 export function createBreadcrumbJsonLd(
   items: Array<{
     name: string;

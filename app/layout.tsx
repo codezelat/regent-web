@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { GoogleAnalytics } from "@/components/regent/analytics/google-analytics";
 import { JsonLd } from "@/components/regent/seo/json-ld";
 import { absoluteUrl } from "@/lib/seo";
 import { getSiteUrl, siteConfig } from "@/lib/site-config";
@@ -139,6 +140,7 @@ export default function RootLayout({
       <body className="min-h-full font-sans">
         <JsonLd data={organizationStructuredData} />
         {children}
+        <GoogleAnalytics />
       </body>
     </html>
   );
