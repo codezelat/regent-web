@@ -90,13 +90,22 @@ export default function RootLayout({
       "@type": "LocalBusiness",
       "@id": `${siteUrl}#localbusiness`,
       name: siteConfig.legalName,
+      alternateName: "Regent",
       url: siteUrl,
+      logo: absoluteUrl("/regent/brand/regent-logo-transparent.png"),
       image: absoluteUrl("/regent/hero.png"),
       description: siteConfig.description,
       email: siteConfig.email,
       telephone: siteConfig.phoneNumbers.map((phone) =>
         phone.href.replace(/^tel:/, ""),
       ),
+      contactPoint: siteConfig.phoneNumbers.map((phone) => ({
+        "@type": "ContactPoint",
+        telephone: phone.href.replace(/^tel:/, ""),
+        contactType: phone.primary ? "customer service" : "sales",
+        areaServed: "LK",
+        availableLanguage: ["en"],
+      })),
       address: {
         "@type": "PostalAddress",
         streetAddress: "403 Bandaranayake Mawatha",
