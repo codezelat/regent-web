@@ -170,18 +170,19 @@ export function ProductsPreviewSection() {
         {productFeatures.map((feature) => (
           <Link
             key={feature.title}
-            className="group relative flex min-h-[360px] overflow-hidden rounded-2xl bg-[var(--regent-blue-900)] shadow-[0_18px_42px_rgba(17,37,90,0.12)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_28px_60px_rgba(17,37,90,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--regent-red)] focus-visible:ring-offset-4"
+            className="group overflow-hidden rounded-2xl border border-black/8 bg-[var(--regent-blue-900)] shadow-[0_18px_42px_rgba(17,37,90,0.1)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_28px_60px_rgba(17,37,90,0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--regent-red)] focus-visible:ring-offset-4"
             href={`/products/${feature.slug}`}
           >
-            <Image
-              src={feature.image}
-              alt={feature.title}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/45 to-black/90" />
-            <div className="relative mt-auto flex flex-col gap-3 p-6 text-white md:p-8">
+            <div className="relative aspect-[4/3] border-b border-white/10 bg-white">
+              <Image
+                src={feature.image}
+                alt={feature.title}
+                fill
+                className="object-contain p-5 transition-transform duration-500 group-hover:scale-[1.03]"
+                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+              />
+            </div>
+            <div className="flex min-h-[216px] flex-col gap-3 p-6 text-white md:p-8">
               <p className="text-xs font-semibold uppercase tracking-[0.1em] text-white/75">
                 {feature.category}
               </p>
