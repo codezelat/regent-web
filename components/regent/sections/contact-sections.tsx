@@ -75,13 +75,21 @@ export function ContactInfoSection() {
 
             <div className="rounded-2xl bg-white p-4">
               <p className="font-semibold text-[var(--foreground)]">Address</p>
-              <address className="mt-2 not-italic">
-                {contactAddress.map((line) => (
-                  <span key={line} className="block">
-                    {line}
-                  </span>
-                ))}
-              </address>
+              <a
+                className="mt-2 block w-fit text-[var(--muted)] transition-colors hover:text-[var(--regent-red)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--regent-red)] focus-visible:ring-offset-4"
+                href={siteConfig.mapHref}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Open Regent Technologies location in Google Maps"
+              >
+                <address className="not-italic">
+                  {contactAddress.map((line) => (
+                    <span key={line} className="block">
+                      {line}
+                    </span>
+                  ))}
+                </address>
+              </a>
               <a
                 className="mt-3 inline-flex font-semibold text-[var(--regent-red)] transition-colors hover:text-[var(--regent-red-dark)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--regent-red)] focus-visible:ring-offset-4"
                 href={siteConfig.mapHref}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { ContactCtaSection } from "@/components/regent/sections/contact-cta";
+import { PartnerCarouselSection } from "@/components/regent/sections/partner-carousel";
 import {
   HomeAboutSection,
   HomeServicesSection,
@@ -65,6 +66,7 @@ export default function Page() {
       </section>
 
       <HomeAboutSection />
+      <PartnerCarouselSection />
       <IndustriesSection />
       <HomeServicesSection />
       <ProductsPreviewSection />

@@ -57,3 +57,45 @@ img {
 ::selection {
   background: rgba(252, 7, 6, 0.16);
 }
+
+.partner-carousel-mask {
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}
+
+.partner-carousel-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+.partner-carousel-group {
+  display: flex;
+  gap: 1rem;
+  padding-right: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partner-carousel-mask * {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .partner-carousel-mask {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}

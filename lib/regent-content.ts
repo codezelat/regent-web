@@ -16,6 +16,39 @@ export const aboutHighlights = [
   "Convenient Pick-Up & Delivery",
 ] as const;
 
+export const partnerCompanies = [
+  {
+    name: "Singer Sri Lanka",
+    logo: "/regent/partners/singer-sri-lanka.svg",
+    width: 220,
+    height: 48,
+  },
+  {
+    name: "Alpha Industries",
+    logo: "/regent/partners/alpha-industries.svg",
+    width: 190,
+    height: 46,
+  },
+  {
+    name: "AT Cooray",
+    logo: "/regent/partners/at-cooray.png",
+    width: 210,
+    height: 101,
+  },
+  {
+    name: "E.H. Cooray & Sons Pvt Ltd",
+    logo: "/regent/partners/eh-cooray.svg",
+    width: 190,
+    height: 68,
+  },
+  {
+    name: "Polydime Plastics Pvt Ltd",
+    logo: "/regent/partners/polydime.png",
+    width: 220,
+    height: 55,
+  },
+] as const;
+
 export const industries = [
   {
     title: "Woodworking Industry",

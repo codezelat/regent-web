@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandLogo } from "@/components/regent/ui/brand-logo";
 import { navItems } from "@/lib/regent-content";
 import { siteConfig } from "@/lib/site-config";
 import {
@@ -64,10 +65,47 @@ export function SiteHeader({ currentPath = "/" }: { currentPath?: string }) {
           <Link
             href="/"
             aria-label="Regent Technologies home"
-            className="inline-flex w-fit text-2xl font-bold tracking-[0.08em] text-white visited:text-white hover:text-white/85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--regent-blue-900)]"
-            style={{ color: "#fff" }}
+            className="flex w-full shrink-0 items-center justify-center gap-3 rounded-lg bg-white px-3 py-3 shadow-[0_16px_40px_rgba(0,0,0,0.16)] ring-1 ring-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--regent-blue-900)] md:hidden"
           >
-            REGENT
+            <span className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden">
+              <BrandLogo
+                variant="color"
+                priority
+                className="h-full w-full"
+                sizes="64px"
+              />
+            </span>
+            <span className="flex min-w-0 flex-col uppercase leading-none">
+              <span className="whitespace-nowrap text-2xl font-black tracking-[0.08em] text-[var(--regent-blue-900)]">
+                Regent
+              </span>
+              <span className="mt-1 whitespace-nowrap text-xs font-black tracking-[0.32em] text-[var(--regent-red)]">
+                Technologies
+              </span>
+              <span className="mt-2 h-1 w-16 bg-[var(--regent-red)]" aria-hidden="true" />
+            </span>
+          </Link>
+          <Link
+            href="/"
+            aria-label="Regent Technologies home"
+            className="hidden max-w-full shrink-0 items-center gap-3 text-white visited:text-white hover:text-white/85 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--regent-blue-900)] md:inline-flex md:min-w-[270px]"
+          >
+            <span className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden">
+              <BrandLogo
+                variant="white"
+                priority
+                className="h-full w-full"
+                sizes="80px"
+              />
+            </span>
+            <span className="flex min-w-0 flex-col uppercase leading-none">
+              <span className="whitespace-nowrap text-2xl font-black tracking-[0.08em] text-white">
+                Regent
+              </span>
+              <span className="mt-1 whitespace-nowrap text-xs font-bold tracking-[0.32em] text-white/82">
+                Technologies
+              </span>
+            </span>
           </Link>
           <details className="group md:hidden">
             <summary className="flex cursor-pointer list-none items-center justify-between rounded-lg border border-white/10 px-4 py-3 text-sm font-semibold text-white">

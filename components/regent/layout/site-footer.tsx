@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Heart } from "lucide-react";
+import { BrandLogo } from "@/components/regent/ui/brand-logo";
 import { footerIndustries, quickLinks } from "@/lib/regent-content";
 import { siteConfig } from "@/lib/site-config";
 import {
@@ -19,7 +20,24 @@ export function SiteFooter() {
         <div className="grid gap-10 lg:grid-cols-2 xl:grid-cols-[minmax(0,1.2fr)_minmax(150px,0.55fr)_minmax(220px,0.85fr)_minmax(260px,1fr)]">
           <div className="min-w-0 space-y-8">
             <div className="space-y-5">
-              <h2 className="text-3xl font-bold uppercase leading-tight">REGENT TECHNOLOGIES</h2>
+              <div className="inline-flex max-w-full items-center gap-3 rounded-lg bg-white px-3 py-3 shadow-[0_16px_40px_rgba(0,0,0,0.16)] ring-1 ring-white/20 sm:gap-4 sm:px-4">
+                <span className="flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden sm:h-20 sm:w-20">
+                  <BrandLogo
+                    variant="color"
+                    className="h-full w-full"
+                    sizes="(max-width: 640px) 64px, 80px"
+                  />
+                </span>
+                <span className="flex min-w-0 flex-col uppercase leading-none">
+                  <span className="whitespace-nowrap text-2xl font-black tracking-[0.08em] text-[var(--regent-blue-900)] sm:text-3xl">
+                    Regent
+                  </span>
+                  <span className="mt-1 whitespace-nowrap text-[0.68rem] font-black tracking-[0.28em] text-[var(--regent-red)] sm:text-xs">
+                    Technologies
+                  </span>
+                  <span className="mt-2 h-1 w-20 bg-[var(--regent-red)]" aria-hidden="true" />
+                </span>
+              </div>
               <p className="max-w-[411px] text-base leading-8 text-[var(--muted-light)]">
                 Regent Technologies brings {siteConfig.experienceLabel.toLowerCase()} in
                 industrial sharpening, tooling support, and workshop-ready
@@ -90,11 +108,19 @@ export function SiteFooter() {
                   <p className="text-base font-medium uppercase text-[var(--muted-light)]">
                     Address
                   </p>
-                  <address className="flex max-w-full flex-col text-base leading-8 text-white not-italic">
-                    {siteConfig.address.map((line) => (
-                      <span className="break-words" key={line}>{line}</span>
-                    ))}
-                  </address>
+                  <a
+                    className="block text-white transition-colors duration-200 hover:text-[var(--muted-light)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--regent-blue-900)]"
+                    href={siteConfig.mapHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Open Regent Technologies location in Google Maps"
+                  >
+                    <address className="flex max-w-full flex-col text-base leading-8 not-italic">
+                      {siteConfig.address.map((line) => (
+                        <span className="break-words" key={line}>{line}</span>
+                      ))}
+                    </address>
+                  </a>
                 </div>
               </div>
               <div className="flex gap-3 py-2">

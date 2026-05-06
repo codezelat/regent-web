@@ -3,15 +3,15 @@ import Image from "next/image";
 import { PageHero } from "@/components/regent/layout/page-hero";
 import { SiteFooter } from "@/components/regent/layout/site-footer";
 import { ContactCtaSection } from "@/components/regent/sections/contact-cta";
+import { PartnerCarouselSection } from "@/components/regent/sections/partner-carousel";
 import { SectionEyebrow } from "@/components/regent/ui/primitives";
 import { whyChoosePoints } from "@/lib/regent-content";
 import { createPageMetadata } from "@/lib/seo";
-import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = createPageMetadata({
   title: "About Regent Technologies",
   description:
-    "Learn about Regent Technologies, a Moratuwa-based industrial sharpening and tooling support company with 20+ years of experience in Sri Lanka.",
+    "Learn about Regent Technologies, a Sri Lankan industrial tool sharpening and servicing company using advanced European technology for cutting solutions, woodworking tools, accessories, and pneumatic machinery.",
   path: "/about",
   image: "/regent/about.png",
 });
@@ -22,8 +22,8 @@ export default function Page() {
       <PageHero
         currentPath="/about"
         eyebrow="About Regent"
-        title="Industrial Sharpening And Tooling Support Built On Experience"
-        description={`Regent Technologies serves production teams, workshops, and woodworking businesses with ${siteConfig.experienceLabel.toLowerCase()} in sharpening and tool support.`}
+        title="Precision Industrial Tool Sharpening And Cutting Solutions"
+        description="Regent Technologies provides industrial tool sharpening, servicing, premium woodworking tools, accessories, and pneumatic machinery for production teams across Sri Lanka."
         image="/regent/about.png"
         imageAlt="Regent Technologies sharpening work"
       />
@@ -32,25 +32,23 @@ export default function Page() {
           <div className="flex flex-col gap-3">
             <SectionEyebrow label="Company" />
             <h1 className="text-3xl font-bold leading-tight md:text-[40px]">
-              Practical tool care for real production work
+              Complete cutting support for demanding industrial work
             </h1>
             <p className="text-lg leading-8 text-[var(--muted)]">
-              Regent Technologies focuses on automated blade sharpening, TCT and HSS tool care, product guidance, and pickup coordination for customers who depend on consistent cutting performance.
+              Regent Technologies is a leading industrial tool sharpening and servicing company, offering precision solutions for woodworking, plastic, printing, and corrugated industries.
             </p>
           </div>
           <div className="space-y-5 border-l-4 border-[var(--regent-red)] pl-6 text-lg leading-8 text-[var(--muted)]">
             <p>
-              Based in Moratuwa, the company supports workshops, furniture
-              makers, manufacturers, and industrial teams that need dependable
-              cutting tools for daily production. The work is practical:
-              restore blade performance, protect tool life, and keep service
-              coordination straightforward.
+              Using advanced European technology, the company helps restore
+              cutting performance, extend tool life, and reduce avoidable
+              downtime for customers who depend on accurate, reliable tools in
+              daily production.
             </p>
             <p>
-              Regent combines automated sharpening technology with hands-on
-              tooling knowledge, helping customers choose the right sharpening
-              path, product support, or pickup arrangement without unnecessary
-              complexity.
+              Alongside sharpening and servicing, Regent imports and supplies
+              premium woodworking tools, accessories, and pneumatic machinery
+              to deliver complete cutting solutions from one trusted partner.
             </p>
           </div>
         </div>
@@ -63,6 +61,27 @@ export default function Page() {
           sizes="(max-width: 1024px) 100vw, 560px"
         />
       </section>
+      <section className="bg-[var(--regent-blue-900)] text-white">
+        <div className="mx-auto grid max-w-[1440px] gap-10 px-4 py-16 md:px-12 md:py-20 lg:grid-cols-[360px_minmax(0,1fr)] lg:items-start">
+          <div>
+            <SectionEyebrow label="Our Mission" className="text-white" />
+            <h2 className="mt-3 text-3xl font-bold leading-tight md:text-[40px]">
+              Improve tool performance
+            </h2>
+          </div>
+          <div className="border-l-4 border-[var(--regent-red)] pl-6 text-lg leading-8 text-[var(--muted-light)]">
+            <p>
+              Our mission is to provide precision industrial tool sharpening
+              and high-quality cutting solutions using advanced European
+              technology. We are committed to improving tool performance,
+              extending tool life, reducing downtime, and building long-term
+              partnerships through reliable service, consistent quality, and
+              strong after-sales support.
+            </p>
+          </div>
+        </div>
+      </section>
+      <PartnerCarouselSection />
       <section className="bg-[var(--surface)]">
         <div className="mx-auto max-w-[1440px] px-4 py-20 md:px-12 md:py-[104px]">
           <div className="grid gap-8 lg:grid-cols-[420px_minmax(0,1fr)]">
