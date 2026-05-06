@@ -4,9 +4,9 @@ import {
   aboutHighlights,
   industries,
   productFeatures,
-  services,
   whyChoosePoints,
 } from "@/lib/regent-content";
+import type { Service } from "@/lib/db/schema";
 import { siteConfig } from "@/lib/site-config";
 import { ArrowBullet, PillButton, SectionEyebrow } from "@/components/regent/ui/primitives";
 
@@ -105,7 +105,7 @@ export function IndustriesSection() {
   );
 }
 
-export function HomeServicesSection() {
+export function HomeServicesSection({ services }: { services: Service[] }) {
   return (
     <section id="services" className="mx-auto max-w-[1440px] px-4 py-20 md:px-12 md:py-[104px]">
       <div className="flex flex-col gap-6 text-center md:items-center">
@@ -121,7 +121,7 @@ export function HomeServicesSection() {
       <div className="mt-14 grid gap-4 xl:grid-cols-2">
         {services.map((service) => (
           <article
-            key={service.title}
+            key={service.slug}
             className="relative min-h-[540px] overflow-hidden bg-black"
           >
             <Image
