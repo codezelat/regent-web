@@ -8,6 +8,7 @@ import {
 } from "@/lib/regent-content";
 import type { Service } from "@/lib/db/schema";
 import { siteConfig } from "@/lib/site-config";
+import { AboutImageSlider } from "@/components/regent/layout/about-image-slider";
 import {
   ArrowBullet,
   PillButton,
@@ -49,15 +50,8 @@ export function HomeAboutSection() {
           />
         </div>
 
-        <div className="relative overflow-hidden rounded-lg">
-          <Image
-            src="/regent/about.png"
-            alt="Grinding sparks during sharpening"
-            width={1500}
-            height={1500}
-            className="h-[420px] w-full object-cover object-center md:h-[600px]"
-            sizes="(max-width: 1024px) 100vw, 664px"
-          />
+        <div className="relative overflow-hidden rounded-lg h-[420px] md:h-[600px]">
+          <AboutImageSlider />
         </div>
       </div>
     </section>
